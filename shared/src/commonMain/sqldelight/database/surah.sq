@@ -1,0 +1,28 @@
+CREATE TABLE surahEntity(
+    number INTEGER NOT NULL PRIMARY KEY,
+    englishName TEXT NOT NULL,
+    englishNameFormatted TEXT NOT NULL,
+    englishNameTranslation TEXT NOT NULL,
+    name INTEGER NOT NULL,
+    numberOfAyahs INTEGER NOT NULL,
+    revelationType INTEGER NOT NULL
+);
+
+getSurahs:
+SELECT * FROM surahEntity;
+
+insertSurah:
+INSERT OR REPLACE
+INTO surahEntity(
+    number,
+    englishName,
+    englishNameFormatted,
+    englishNameTranslation,
+    name,
+    numberOfAyahs,
+    revelationType
+) VALUES (?,?,?,?,?,?,?);
+
+deleteSurah:
+DELETE FROM surahEntity
+WHERE number = ?;
