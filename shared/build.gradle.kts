@@ -23,11 +23,19 @@ kotlin {
         }
     }
 
+    val ktorVersion = "2.1.0"
+
     sourceSets {
         val commonMain by getting {
             dependencies {
                 implementation("com.squareup.sqldelight:runtime:1.5.3")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-client-json:$ktorVersion")
+                implementation("io.ktor:ktor-client-logging:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
             }
         }
         val commonTest by getting {
@@ -38,6 +46,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("com.squareup.sqldelight:android-driver:1.5.3")
+                implementation("io.ktor:ktor-client-android:$ktorVersion")
             }
         }
         val androidTest by getting
@@ -47,6 +56,7 @@ kotlin {
         val iosMain by creating {
             dependencies {
                 implementation("com.squareup.sqldelight:native-driver:1.5.3")
+                implementation("io.ktor:ktor-client-ios:$ktorVersion")
             }
 
             dependsOn(commonMain)
