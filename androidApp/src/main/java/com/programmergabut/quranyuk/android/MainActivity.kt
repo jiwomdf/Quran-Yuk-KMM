@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.programmergabut.quranyuk.Greeting
+import com.programmergabut.quranyuk.data.remote.source.RemoteDataSource
+import com.programmergabut.quranyuk.domain.repository.QuranRepository
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +21,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    val vw = MainViewModel(QuranRepository(RemoteDataSource()))
+                    vw.getAllSurah()
                     GreetingView(Greeting().greet())
                 }
             }

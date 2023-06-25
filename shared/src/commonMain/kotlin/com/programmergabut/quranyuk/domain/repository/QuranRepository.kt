@@ -1,21 +1,19 @@
 package com.programmergabut.quranyuk.domain.repository
 
 import com.programmergabut.quranyuk.data.local.source.LocalDataSource
-import com.programmergabut.quranyuk.data.remote.response.SurahResponse
-import com.programmergabut.quranyuk.data.remote.network.QuranApi
+import com.programmergabut.quranyuk.data.remote.response.AllSurahResponse
 import com.programmergabut.quranyuk.data.remote.source.RemoteDataSource
-import io.ktor.client.call.body
-import io.ktor.client.request.get
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
 
 class QuranRepository(
     private val remote: RemoteDataSource,
-    private val local: LocalDataSource
+    //private val local: LocalDataSource
 ) {
 
-//    fun getAllAgents(): Flow<List<AgentEntity>> {
-//        return queries.getAllAgents().asFlow()
-//    }
+    suspend fun fetchAllSurah(): AllSurahResponse {
+        return remote.fetchAllSurah()
+    }
 
 //    suspend fun insertAgent(agents: List<AgentEntity>) {
 //        queries.transaction {

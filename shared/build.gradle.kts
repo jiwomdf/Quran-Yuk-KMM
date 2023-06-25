@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("com.squareup.sqldelight")
+    kotlin("plugin.serialization") version "1.8.22"
 }
 
 kotlin {
@@ -23,7 +24,7 @@ kotlin {
         }
     }
 
-    val ktorVersion = "2.1.0"
+    val ktorVersion = "2.3.0"
 
     sourceSets {
         val commonMain by getting {
