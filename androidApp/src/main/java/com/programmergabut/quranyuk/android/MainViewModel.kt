@@ -1,26 +1,23 @@
 package com.programmergabut.quranyuk.android
 
 import android.util.Log
-import androidx.compose.runtime.mutableStateOf
-import com.programmergabut.quranyuk.data.remote.response.AllSurahResponse
-import com.programmergabut.quranyuk.domain.repository.QuranRepository
+import androidx.compose.runtime.mutableStateListOf
+import com.programmergabut.quranyuk.domain.model.Ayah
+import com.programmergabut.quranyuk.domain.repository.QuranRepositoryImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val repository: QuranRepository,
+    private val repository: QuranRepositoryImpl,
 ){
-
-    val allSurah = mutableStateOf(AllSurahResponse())
+    val allSurah = mutableStateListOf<Ayah>()
 
     fun getAllSurah() {
         CoroutineScope(Dispatchers.IO).launch {
-            val response = repository.fetchAllSurah()
-
-            //TODO JIWO response
-            Log.e("jiwo", "getAllSurah: $response", )
-            allSurah.value = response
+            val surahs = repository.fetchAllSurah()
+            Log.e("jiwo", "surahs: $surahs")
+            allSurah.addAll(surahs)
         }
     }
 }
