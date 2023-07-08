@@ -1,9 +1,9 @@
 package com.programmergabut.quranyuk.domain.model
 
-import com.programmergabut.quranyuk.data.remote.response.AllSurahResponse
+import com.programmergabut.quranyuk.data.remote.response.ReadSurahEnResponse
 
 
-data class Ayah(
+data class ReadSurahEn(
     val number: Int,
     val text: String,
     val surah: Surah,
@@ -19,9 +19,9 @@ data class Ayah(
     )
 
     companion object {
-        fun mapAyah(response: AllSurahResponse): List<Ayah> {
+        fun mapReadSurahEn(response: ReadSurahEnResponse): List<ReadSurahEn> {
             return response.data?.ayahs?.map {
-                Ayah(
+                ReadSurahEn(
                     number = it.number ?: 0,
                     text = it.text ?: "",
                     surah = Surah(

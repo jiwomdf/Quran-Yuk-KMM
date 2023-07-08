@@ -6,31 +6,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AllSurahResponse(
-    @SerialName("data") var data: AllSurah? = null
+    @SerialName("data") var data: List<AllSurah>? = null
 ): BaseResponse() {
-
     @Serializable
     data class AllSurah(
-        @SerialName("number") val number: Int? = null,
-        @SerialName("ayahs") var ayahs: List<Ayah>? = null,
-    ) {
-
-        @Serializable
-        data class Ayah(
-            @SerialName("number") val number: Int? = null,
-            @SerialName("text") val text: String? = null,
-            @SerialName("surah") val surah: Surah? = null,
-        ) {
-
-            @Serializable
-            data class Surah(
-                @SerialName("number") val number: Int? = null,
-                @SerialName("name") val name: String? = null,
-                @SerialName("englishName") val englishName: String? = null,
-                @SerialName("englishNameTranslation") val englishNameTranslation: String? = null,
-                @SerialName("revelationType") val revelationType: String? = null,
-                @SerialName("numberOfAyahs") val numberOfAyahs: Int? = null
-            )
-        }
-    }
+        @SerialName("englishName") val englishName: String?,
+        @SerialName("englishNameTranslation") val englishNameTranslation: String?,
+        @SerialName("name") val name: String?,
+        @SerialName("number") val number: Int?,
+        @SerialName("numberOfAyahs") val numberOfAyahs: Int?,
+        @SerialName("revelationType") val revelationType: String?
+    )
 }
