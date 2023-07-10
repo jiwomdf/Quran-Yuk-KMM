@@ -1,4 +1,4 @@
-package com.programmergabut.quranyuk.android
+package com.programmergabut.quranyuk.android.features.alquran
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
@@ -8,7 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModel(
+class QuranViewModel(
     private val repository: QuranRepositoryImpl,
 ){
     val allSurah = mutableStateListOf<Surah>()
