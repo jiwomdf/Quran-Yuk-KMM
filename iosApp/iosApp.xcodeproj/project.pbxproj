@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04671EFD2A584911006876C1 /* MainQuranViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04671EFC2A584911006876C1 /* MainQuranViewModel.swift */; };
+		0477D13F2A55007F008EF996 /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477D13E2A55007F008EF996 /* Constans.swift */; };
+		04A87E6E2A53B67200104D43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A87E6D2A53B67200104D43 /* Main.storyboard */; };
+		04B753D02A55093500029B64 /* SurahTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B753CF2A55093500029B64 /* SurahTableViewCell.swift */; };
+		04D460C72A5319B9009FE872 /* Cairo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460C32A531985009FE872 /* Cairo-Black.ttf */; };
+		04D460C82A5319BC009FE872 /* Cairo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460C52A531985009FE872 /* Cairo-Bold.ttf */; };
+		04D460C92A5319BF009FE872 /* Cairo-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460C12A531985009FE872 /* Cairo-ExtraBold.ttf */; };
+		04D460CA2A5319C1009FE872 /* Cairo-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460C02A531985009FE872 /* Cairo-ExtraLight.ttf */; };
+		04D460CB2A5319C4009FE872 /* Cairo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460C22A531985009FE872 /* Cairo-Light.ttf */; };
+		04D460CC2A5319C6009FE872 /* Cairo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460BF2A531985009FE872 /* Cairo-Medium.ttf */; };
+		04D460CD2A5319C9009FE872 /* Cairo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460BE2A531985009FE872 /* Cairo-Regular.ttf */; };
+		04D460CE2A5319CB009FE872 /* Cairo-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460C42A531985009FE872 /* Cairo-SemiBold.ttf */; };
+		04D460D22A5326ED009FE872 /* MainQuranViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D460D12A5326ED009FE872 /* MainQuranViewController.swift */; };
+		04D460D62A532C07009FE872 /* MainQuran.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D460D52A532C07009FE872 /* MainQuran.xib */; };
+		04E4D0532A544FC800D64774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4D0522A544FC800D64774 /* AppDelegate.swift */; };
+		04E4D0552A544FF500D64774 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4D0542A544FF500D64774 /* SceneDelegate.swift */; };
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
@@ -27,6 +43,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04671EFC2A584911006876C1 /* MainQuranViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQuranViewModel.swift; sourceTree = "<group>"; };
+		0477D13E2A55007F008EF996 /* Constans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
+		04A87E6D2A53B67200104D43 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		04B753CF2A55093500029B64 /* SurahTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurahTableViewCell.swift; sourceTree = "<group>"; };
+		04D460BE2A531985009FE872 /* Cairo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Regular.ttf"; sourceTree = "<group>"; };
+		04D460BF2A531985009FE872 /* Cairo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Medium.ttf"; sourceTree = "<group>"; };
+		04D460C02A531985009FE872 /* Cairo-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-ExtraLight.ttf"; sourceTree = "<group>"; };
+		04D460C12A531985009FE872 /* Cairo-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-ExtraBold.ttf"; sourceTree = "<group>"; };
+		04D460C22A531985009FE872 /* Cairo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Light.ttf"; sourceTree = "<group>"; };
+		04D460C32A531985009FE872 /* Cairo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Black.ttf"; sourceTree = "<group>"; };
+		04D460C42A531985009FE872 /* Cairo-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-SemiBold.ttf"; sourceTree = "<group>"; };
+		04D460C52A531985009FE872 /* Cairo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Bold.ttf"; sourceTree = "<group>"; };
+		04D460D12A5326ED009FE872 /* MainQuranViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQuranViewController.swift; sourceTree = "<group>"; };
+		04D460D52A532C07009FE872 /* MainQuran.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainQuran.xib; path = ../../../../../.Trash/MainQuran.xib; sourceTree = "<group>"; };
+		04E4D0522A544FC800D64774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		04E4D0542A544FF500D64774 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
@@ -46,6 +78,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04B753CE2A55091300029B64 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				04B753CF2A55093500029B64 /* SurahTableViewCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		04D460A82A531487009FE872 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				04D460D52A532C07009FE872 /* MainQuran.xib */,
+				04A87E6D2A53B67200104D43 /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		04D460BD2A53197D009FE872 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				04D460C32A531985009FE872 /* Cairo-Black.ttf */,
+				04D460C52A531985009FE872 /* Cairo-Bold.ttf */,
+				04D460C12A531985009FE872 /* Cairo-ExtraBold.ttf */,
+				04D460C02A531985009FE872 /* Cairo-ExtraLight.ttf */,
+				04D460C22A531985009FE872 /* Cairo-Light.ttf */,
+				04D460BF2A531985009FE872 /* Cairo-Medium.ttf */,
+				04D460BE2A531985009FE872 /* Cairo-Regular.ttf */,
+				04D460C42A531985009FE872 /* Cairo-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		04D460CF2A53269A009FE872 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04B753CE2A55091300029B64 /* TableView */,
+				04D460A82A531487009FE872 /* Main */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		04D460D02A5326C9009FE872 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04D460D12A5326ED009FE872 /* MainQuranViewController.swift */,
+				04671EFC2A584911006876C1 /* MainQuranViewModel.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		058557D7273AAEEB004C7B11 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
@@ -73,11 +155,17 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				04D460D02A5326C9009FE872 /* ViewController */,
+				04D460CF2A53269A009FE872 /* Views */,
+				04D460BD2A53197D009FE872 /* Fonts */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
+				04E4D0522A544FC800D64774 /* AppDelegate.swift */,
+				04E4D0542A544FF500D64774 /* SceneDelegate.swift */,
+				0477D13E2A55007F008EF996 /* Constans.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -142,8 +230,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D460CC2A5319C6009FE872 /* Cairo-Medium.ttf in Resources */,
+				04D460CE2A5319CB009FE872 /* Cairo-SemiBold.ttf in Resources */,
+				04D460C82A5319BC009FE872 /* Cairo-Bold.ttf in Resources */,
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
+				04D460CD2A5319C9009FE872 /* Cairo-Regular.ttf in Resources */,
+				04D460D62A532C07009FE872 /* MainQuran.xib in Resources */,
+				04A87E6E2A53B67200104D43 /* Main.storyboard in Resources */,
+				04D460C92A5319BF009FE872 /* Cairo-ExtraBold.ttf in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
+				04D460CA2A5319C1009FE872 /* Cairo-ExtraLight.ttf in Resources */,
+				04D460CB2A5319C4009FE872 /* Cairo-Light.ttf in Resources */,
+				04D460C72A5319B9009FE872 /* Cairo-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +272,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B753D02A55093500029B64 /* SurahTableViewCell.swift in Sources */,
+				04E4D0552A544FF500D64774 /* SceneDelegate.swift in Sources */,
+				04E4D0532A544FC800D64774 /* AppDelegate.swift in Sources */,
+				04671EFD2A584911006876C1 /* MainQuranViewModel.swift in Sources */,
+				0477D13F2A55007F008EF996 /* Constans.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				04D460D22A5326ED009FE872 /* MainQuranViewController.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

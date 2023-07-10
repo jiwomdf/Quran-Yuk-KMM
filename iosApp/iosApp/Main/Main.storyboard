@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Cairo-Bold.ttf">
+            <string>Cairo-Bold</string>
+        </array>
+        <array key="Cairo-Regular.ttf">
+            <string>Cairo-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Main Quran View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" customClass="MainQuranViewController" customModule="iosApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Al-Qur’an" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3N-X3-LSr">
+                                <rect key="frame" x="20" y="91" width="116" height="52.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="28"/>
+                                <color key="textColor" red="0.52941179279999995" green="0.52941179279999995" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search surah" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kVm-nP-Kq4" userLabel="SearchSurahTextField">
+                                <rect key="frame" x="20" y="159.66666666666666" width="353" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="SearchTextField:" destination="Zla-Xz-gCt" eventType="editingDidEnd" id="vsb-gH-YG3"/>
+                                </connections>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3Ij-7G-SJk">
+                                <rect key="frame" x="20" y="209.66666666666669" width="353" height="608.33333333333326"/>
+                                <color key="backgroundColor" red="0.050980389119999997" green="0.050980389119999997" blue="0.074509806930000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SurahCell" rowHeight="80" id="snK-yX-ixQ" customClass="SurahTableViewCell" customModule="iosApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="353" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="snK-yX-ixQ" id="jw3-8W-g6k">
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ucx-yy-rW7" userLabel="Line View">
+                                                    <rect key="frame" x="0.0" y="77" width="353" height="1"/>
+                                                    <color key="backgroundColor" red="0.15294116739999999" green="0.15294116739999999" blue="0.2588235438" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="Qt0-VO-COI"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="surah_star" translatesAutoresizingMaskIntoConstraints="NO" id="9JX-OE-qH8">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="0up-aR-wpd"/>
+                                                        <constraint firstAttribute="width" constant="50" id="tyM-o2-JWF"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqK-jZ-no6" userLabel="SurahNumber">
+                                                    <rect key="frame" x="13.333333333333334" y="27" width="23.666666666666664" height="26.333333333333329"/>
+                                                    <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Twa-Tn-GmL">
+                                                    <rect key="frame" x="66" y="11" width="105.33333333333331" height="58"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Al-Fatihah" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcq-9g-UP5" userLabel="SurahName">
+                                                            <rect key="frame" x="0.0" y="0.0" width="105.33333333333333" height="32"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="32" id="Cj9-DS-Ogf"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="14"/>
+                                                            <color key="textColor" red="0.52941179279999995" green="0.52941179279999995" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Opener (7 Verse)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVg-16-KOl" userLabel="SurahMeaning">
+                                                            <rect key="frame" x="0.0" y="32" width="105.33333333333333" height="26"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="26" id="qel-A1-AtB"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="12"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.050980389119999997" green="0.050980389119999997" blue="0.074509806930000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstItem="ucx-yy-rW7" firstAttribute="top" secondItem="Twa-Tn-GmL" secondAttribute="bottom" constant="8" id="2Rb-h3-I5q"/>
+                                                <constraint firstItem="9JX-OE-qH8" firstAttribute="top" secondItem="jw3-8W-g6k" secondAttribute="top" id="3da-uh-WxO"/>
+                                                <constraint firstAttribute="trailing" secondItem="ucx-yy-rW7" secondAttribute="trailing" id="ABN-Yy-Djy"/>
+                                                <constraint firstItem="YqK-jZ-no6" firstAttribute="centerX" secondItem="9JX-OE-qH8" secondAttribute="centerX" id="Emf-CU-3Yk"/>
+                                                <constraint firstAttribute="bottom" secondItem="ucx-yy-rW7" secondAttribute="bottom" constant="2" id="NG0-uy-Qkz"/>
+                                                <constraint firstItem="9JX-OE-qH8" firstAttribute="leading" secondItem="jw3-8W-g6k" secondAttribute="leading" id="P3a-21-JLa"/>
+                                                <constraint firstAttribute="bottom" secondItem="9JX-OE-qH8" secondAttribute="bottom" id="hA7-yG-ROH"/>
+                                                <constraint firstItem="ucx-yy-rW7" firstAttribute="leading" secondItem="jw3-8W-g6k" secondAttribute="leading" id="iEu-Hf-u7q"/>
+                                                <constraint firstItem="9JX-OE-qH8" firstAttribute="top" secondItem="jw3-8W-g6k" secondAttribute="top" id="kCg-Nt-blg"/>
+                                                <constraint firstAttribute="bottom" secondItem="9JX-OE-qH8" secondAttribute="bottom" id="pF3-eo-qrT"/>
+                                                <constraint firstItem="YqK-jZ-no6" firstAttribute="centerY" secondItem="9JX-OE-qH8" secondAttribute="centerY" id="vem-At-ADw"/>
+                                                <constraint firstItem="Twa-Tn-GmL" firstAttribute="leading" secondItem="9JX-OE-qH8" secondAttribute="trailing" constant="16" id="zvO-SM-ntn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="surahDscLabel" destination="ZVg-16-KOl" id="cmq-dG-IcP"/>
+                                            <outlet property="surahNameLabel" destination="pcq-9g-UP5" id="vp1-Gh-a7I"/>
+                                            <outlet property="surahNumberLabel" destination="YqK-jZ-no6" id="Jps-cp-yWN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                        <color key="backgroundColor" red="0.050980389119999997" green="0.050980389119999997" blue="0.078431375319999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="b3N-X3-LSr" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" id="Efw-RW-ISd"/>
+                            <constraint firstItem="3Ij-7G-SJk" firstAttribute="top" secondItem="kVm-nP-Kq4" secondAttribute="bottom" constant="16" id="FkK-qW-K20"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="3Ij-7G-SJk" secondAttribute="trailing" constant="20" id="MoX-0B-aq7"/>
+                            <constraint firstItem="kVm-nP-Kq4" firstAttribute="top" secondItem="b3N-X3-LSr" secondAttribute="bottom" constant="16" id="OV0-ZF-4MV"/>
+                            <constraint firstItem="b3N-X3-LSr" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="32" id="ddN-t0-FaY"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="3Ij-7G-SJk" secondAttribute="bottom" id="ehR-Z1-mWV"/>
+                            <constraint firstItem="kVm-nP-Kq4" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" id="i7n-Ak-e5V"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="kVm-nP-Kq4" secondAttribute="trailing" constant="20" id="mYS-Jg-h3y"/>
+                            <constraint firstItem="3Ij-7G-SJk" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" id="zJU-9z-nQK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="3Ij-7G-SJk" id="ev7-T6-eVC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Zla-Xz-gCt" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="surah_star" width="26.666666030883789" height="26.666666030883789"/>
+    </resources>
+</document>
