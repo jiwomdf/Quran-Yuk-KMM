@@ -7,14 +7,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.programmergabut.quranyuk.android.MyApplicationTheme
-import com.programmergabut.quranyuk.data.remote.network.QuranApi
-import com.programmergabut.quranyuk.data.remote.source.RemoteDataSourceImpl
-import com.programmergabut.quranyuk.domain.repository.QuranRepositoryImpl
 
 @Composable
 fun QuranScreen(
     navController: NavController,
-    viewModel: QuranViewModel
+    viewModel: IQuranViewModel
 ) {
     val context = LocalContext.current
 
@@ -29,7 +26,7 @@ fun QuranPreview() {
     MyApplicationTheme {
         QuranScreen(
             rememberNavController(),
-            QuranViewModel(QuranRepositoryImpl(RemoteDataSourceImpl(QuranApi())))
+            FakeQuranViewModel()
         )
     }
 }
