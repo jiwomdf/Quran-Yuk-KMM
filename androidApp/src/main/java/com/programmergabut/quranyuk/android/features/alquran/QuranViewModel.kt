@@ -35,7 +35,6 @@ class QuranViewModel(
                         allSurah.addAll(it)
                         Log.e("rifqi", "surahs: $it")
                     }
-
                 }
                 is Resource.Error -> {}
             }

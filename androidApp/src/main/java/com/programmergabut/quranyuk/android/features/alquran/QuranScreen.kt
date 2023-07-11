@@ -11,12 +11,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.programmergabut.quranyuk.android.MyApplicationTheme
+import com.programmergabut.quranyuk.android.R
 import com.programmergabut.quranyuk.android.theme.AppColor
 
 @Composable
@@ -38,6 +41,8 @@ fun QuranScreen(
             modifier = Modifier.padding(start = 20.dp, top = 32.dp, bottom = 16.dp),
             text = "Al-Qur’an",
             fontSize = 16.sp,
+            color = AppColor.Primary,
+            fontFamily = FontFamily(Font(R.font.cairo_bold)),
         )
 
         LazyColumn(
