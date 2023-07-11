@@ -83,7 +83,7 @@ kotlin {
 }
 
 sqldelight {
-    database("NoteDatabase") {
+    database("QuranDatabase") {
         packageName = "com.programmergabut.quranyuk"
         sourceFolders = listOf("sqldelight")
     }

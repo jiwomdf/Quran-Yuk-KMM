@@ -3,9 +3,9 @@ CREATE TABLE surahEntity(
     englishName TEXT NOT NULL,
     englishNameFormatted TEXT NOT NULL,
     englishNameTranslation TEXT NOT NULL,
-    name INTEGER NOT NULL,
+    name TEXT NOT NULL,
     numberOfAyahs INTEGER NOT NULL,
-    revelationType INTEGER NOT NULL
+    revelationType TEXT NOT NULL
 );
 
 getSurahs:
