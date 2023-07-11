@@ -11,34 +11,17 @@ class QuranRepositoryImpl(
     //private val local: LocalDataSource
 ): QuranRepository {
 
-    override suspend fun fetchAllSurah(): Resource<List<Surah>>  {
-        return try {
-            val response = remote.fetchAllSurahAsync().await()
-            when(response){
-                is ApiResponse.Success -> {
-                    Resource.Success(Surah.mapAllSurah(response.data))
-                }
-                is ApiResponse.Error -> {
-                    Resource.Error("something went wrong")
-                }
-                else -> {
-                    Resource.Error("Something went wrong")
-                }
-            }
-        } catch (ex: Exception){
-            Resource.Error("Something went wrong")
-        }
+    override suspend fun fetchAllSurah(): List<Surah> {
+        val data = remote.fetchAllSurah()
+
+        return Surah.mapAllSurah(data)
     }
 
-    override suspend fun fetchReadSurahEn(): Resource<List<ReadSurahEn>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun fetchReadSurahEn(): List<ReadSurahEn> {
+        val data = remote.fetchReadSurahEn()
 
-//    override suspend fun fetchReadSurahEn(): List<ReadSurahEn> {
-//        val data = remote.fetchReadSurahEn()
-//
-//        return ReadSurahEn.mapReadSurahEn(data)
-//    }
+        return ReadSurahEn.mapReadSurahEn(data)
+    }
 
     /* override suspend fun fetchAllSurah(): List<AllSurahResponse.AllSurah.Ayah> {
         return networkBoundResource(
@@ -56,5 +39,4 @@ class QuranRepositoryImpl(
             }
         )
     } */
-
 }
