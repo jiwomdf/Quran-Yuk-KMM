@@ -1,11 +1,10 @@
 package com.programmergabut.quranyuk.android.features.alquran
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.programmergabut.quranyuk.domain.model.Surah
 import com.programmergabut.quranyuk.domain.repository.QuranRepositoryImpl
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
@@ -20,13 +19,12 @@ class FakeQuranViewModel : IQuranViewModel {
 
 class QuranViewModel(
     private val repository: QuranRepositoryImpl,
-): IQuranViewModel {
+): IQuranViewModel, ViewModel() {
     override val allSurah = mutableStateListOf<Surah>()
 
     override fun getAllSurah() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val surahs = repository.fetchAllSurah()
-            Log.e("jiwo", "surahs: $surahs")
+        viewModelScope.launch {
+            val surahs = repository.getAllSurah()
             allSurah.addAll(surahs)
         }
     }

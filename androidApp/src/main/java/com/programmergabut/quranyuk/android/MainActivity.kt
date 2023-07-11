@@ -10,8 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.programmergabut.quranyuk.QuranDatabase
 import com.programmergabut.quranyuk.android.features.alquran.QuranScreen
 import com.programmergabut.quranyuk.android.features.alquran.QuranViewModel
+import com.programmergabut.quranyuk.data.local.DatabaseDriverFactory
+import com.programmergabut.quranyuk.data.local.SqlDelightQuranDataSource
 import com.programmergabut.quranyuk.data.remote.network.QuranApi
 import com.programmergabut.quranyuk.data.remote.source.RemoteDataSourceImpl
 import com.programmergabut.quranyuk.domain.repository.QuranRepositoryImpl
@@ -35,7 +38,10 @@ class MainActivity : ComponentActivity() {
                         composable(
                             route = Screen.QuranScreen.route
                         ) {
-                            val viewModel = QuranViewModel(QuranRepositoryImpl(RemoteDataSourceImpl(QuranApi())))
+                            val remote = RemoteDataSourceImpl(QuranApi())
+                            val driver = DatabaseDriverFactory(applicationContext).createDriver()
+                            val local = SqlDelightQuranDataSource(QuranDatabase(driver))
+                            val viewModel = QuranViewModel(QuranRepositoryImpl(remote, local))
                             QuranScreen(navController, viewModel)
                         }
                     }

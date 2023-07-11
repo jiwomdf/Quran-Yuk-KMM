@@ -18,7 +18,7 @@ fun SurahListItem(
             .background(AppColor.White)
     ) {
         Text(
-            text = data.name,
+            text = data.englishName,
             fontSize = 16.sp
         )
     }
