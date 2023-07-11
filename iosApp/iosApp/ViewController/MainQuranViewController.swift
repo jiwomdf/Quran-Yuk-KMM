@@ -17,7 +17,9 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var tableView: UITableView!
     
     private lazy var viewModel: MainQuranViewModel = {
-        let vm = MainQuranViewModel(quranRepository: QuranRepositoryImpl(remote: RemoteDataSourceImpl(quranApi: QuranApi())))
+        let remote = RemoteDataSourceImpl(quranApi: QuranApi())
+        let local = DatabaseModule().noteDataSource
+        let vm = MainQuranViewModel(quranRepository: QuranRepositoryImpl(remote: remote, local: local))
         vm.didSucceedGetAllSurah = reloadViews
         vm.didFailedGetAllSurah = showErrorMessage
         return vm

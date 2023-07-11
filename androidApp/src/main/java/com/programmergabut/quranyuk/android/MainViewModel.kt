@@ -17,7 +17,9 @@ class MainViewModel(
         CoroutineScope(Dispatchers.IO).launch {
             val surahs = repository.fetchAllSurah()
             Log.e("jiwo", "surahs: $surahs")
-            allSurah.addAll(surahs)
+            surahs.let {
+                allSurah.addAll(it)
+            }
         }
     }
 }

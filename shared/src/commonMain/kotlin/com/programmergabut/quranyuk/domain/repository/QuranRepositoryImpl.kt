@@ -1,18 +1,33 @@
 package com.programmergabut.quranyuk.domain.repository
 
-import com.programmergabut.quranyuk.data.remote.source.RemoteDataSourceImpl
-import com.programmergabut.quranyuk.domain.model.Surah
+import com.programmergabut.quranyuk.data.local.LocalDataSource
+import com.programmergabut.quranyuk.data.remote.source.RemoteDataSource
 import com.programmergabut.quranyuk.domain.model.ReadSurahEn
+import com.programmergabut.quranyuk.domain.model.Surah
+import com.programmergabut.quranyuk.utils.networkBoundResource
+import kotlinx.coroutines.runBlocking
 
 class QuranRepositoryImpl(
-    private val remote: RemoteDataSourceImpl,
-    //private val local: LocalDataSource
+    private val remote: RemoteDataSource,
+    private val local: LocalDataSource
 ): QuranRepository {
 
     override suspend fun fetchAllSurah(): List<Surah> {
-        val data = remote.fetchAllSurah()
-
-        return Surah.mapAllSurah(data)
+        return networkBoundResource(
+            query = {
+                runBlocking {
+                    return@runBlocking local.getSurah()
+                }
+            },
+            fetch = {
+                remote.fetchAllSurah()
+            },
+            saveFetchResult = {
+                local.insertSurah(Surah.mapAllSurah(it))
+            }
+        ) {
+            it.isEmpty()
+        }
     }
 
     override suspend fun fetchReadSurahEn(): List<ReadSurahEn> {

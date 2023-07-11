@@ -13,8 +13,8 @@ data class AllSurahResponse(
         @SerialName("englishName") val englishName: String?,
         @SerialName("englishNameTranslation") val englishNameTranslation: String?,
         @SerialName("name") val name: String?,
-        @SerialName("number") val number: Int?,
-        @SerialName("numberOfAyahs") val numberOfAyahs: Int?,
+        @SerialName("number") val number: Long?,
+        @SerialName("numberOfAyahs") val numberOfAyahs: Long?,
         @SerialName("revelationType") val revelationType: String?
     )
 }
