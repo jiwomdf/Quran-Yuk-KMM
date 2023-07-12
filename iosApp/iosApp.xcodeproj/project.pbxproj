@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,12 +20,13 @@
 		04D460CD2A5319C9009FE872 /* Cairo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460BE2A531985009FE872 /* Cairo-Regular.ttf */; };
 		04D460CE2A5319CB009FE872 /* Cairo-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460C42A531985009FE872 /* Cairo-SemiBold.ttf */; };
 		04D460D22A5326ED009FE872 /* MainQuranViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D460D12A5326ED009FE872 /* MainQuranViewController.swift */; };
-		04D460D62A532C07009FE872 /* MainQuran.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04D460D52A532C07009FE872 /* MainQuran.xib */; };
 		04E4D0532A544FC800D64774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4D0522A544FC800D64774 /* AppDelegate.swift */; };
 		04E4D0552A544FF500D64774 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4D0542A544FF500D64774 /* SceneDelegate.swift */; };
+		04F01ED62A5ECD3C0031DEA0 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F01ED52A5ECD3C0031DEA0 /* SearchTextField.swift */; };
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		221E8873A62729F3FD7FA81F /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328D762CBBEA00DDE9051FF2 /* Pods_iosApp.framework */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,15 +57,18 @@
 		04D460C42A531985009FE872 /* Cairo-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-SemiBold.ttf"; sourceTree = "<group>"; };
 		04D460C52A531985009FE872 /* Cairo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Bold.ttf"; sourceTree = "<group>"; };
 		04D460D12A5326ED009FE872 /* MainQuranViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQuranViewController.swift; sourceTree = "<group>"; };
-		04D460D52A532C07009FE872 /* MainQuran.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainQuran.xib; path = ../../../../../.Trash/MainQuran.xib; sourceTree = "<group>"; };
 		04E4D0522A544FC800D64774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04E4D0542A544FF500D64774 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		04F01ED52A5ECD3C0031DEA0 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		328D762CBBEA00DDE9051FF2 /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		481497DDB49C6FB259D8D539 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6788DB15CF5316E2740503C /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,12 +76,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221E8873A62729F3FD7FA81F /* Pods_iosApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		048170E52A5EE413003743D7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				04D460D12A5326ED009FE872 /* MainQuranViewController.swift */,
+				04671EFC2A584911006876C1 /* MainQuranViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		04B753CE2A55091300029B64 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,7 +103,6 @@
 		04D460A82A531487009FE872 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				04D460D52A532C07009FE872 /* MainQuran.xib */,
 				04A87E6D2A53B67200104D43 /* Main.storyboard */,
 			);
 			path = Main;
@@ -122,10 +135,17 @@
 		04D460D02A5326C9009FE872 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				04D460D12A5326ED009FE872 /* MainQuranViewController.swift */,
-				04671EFC2A584911006876C1 /* MainQuranViewModel.swift */,
+				048170E52A5EE413003743D7 /* Main */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		04F01ED42A5ECD2A0031DEA0 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				04F01ED52A5ECD3C0031DEA0 /* SearchTextField.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		058557D7273AAEEB004C7B11 /* Preview Content */ = {
@@ -136,11 +156,30 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		1C20E98E5A3841863F1F7690 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				481497DDB49C6FB259D8D539 /* Pods-iosApp.debug.xcconfig */,
+				D6788DB15CF5316E2740503C /* Pods-iosApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		1D2C9AA070246F88D960FB77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				328D762CBBEA00DDE9051FF2 /* Pods_iosApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
 				7555FF7D242A565900829871 /* iosApp */,
 				7555FF7C242A565900829871 /* Products */,
+				1C20E98E5A3841863F1F7690 /* Pods */,
+				1D2C9AA070246F88D960FB77 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,6 +194,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				04F01ED42A5ECD2A0031DEA0 /* CustomView */,
 				04D460D02A5326C9009FE872 /* ViewController */,
 				04D460CF2A53269A009FE872 /* Views */,
 				04D460BD2A53197D009FE872 /* Fonts */,
@@ -177,17 +217,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
+				FA2DE6575E1F6D60FB6B7825 /* [CP] Check Pods Manifest.lock */,
 				7555FFB5242A651A00829871 /* ShellScript */,
 				7555FF77242A565900829871 /* Sources */,
 				7555FF78242A565900829871 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
 				7555FFB4242A642300829871 /* Embed Frameworks */,
+				EEAC26582C835E05F8F0DD6E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = iosApp;
+			packageProductDependencies = (
+			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
 			productType = "com.apple.product-type.application";
@@ -216,6 +260,8 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -235,7 +281,6 @@
 				04D460C82A5319BC009FE872 /* Cairo-Bold.ttf in Resources */,
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				04D460CD2A5319C9009FE872 /* Cairo-Regular.ttf in Resources */,
-				04D460D62A532C07009FE872 /* MainQuran.xib in Resources */,
 				04A87E6E2A53B67200104D43 /* Main.storyboard in Resources */,
 				04D460C92A5319BF009FE872 /* Cairo-ExtraBold.ttf in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
@@ -265,6 +310,45 @@
 			shellPath = /bin/sh;
 			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
 		};
+		EEAC26582C835E05F8F0DD6E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA2DE6575E1F6D60FB6B7825 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iosApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -273,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B753D02A55093500029B64 /* SurahTableViewCell.swift in Sources */,
+				04F01ED62A5ECD3C0031DEA0 /* SearchTextField.swift in Sources */,
 				04E4D0552A544FF500D64774 /* SceneDelegate.swift in Sources */,
 				04E4D0532A544FC800D64774 /* AppDelegate.swift in Sources */,
 				04671EFD2A584911006876C1 /* MainQuranViewModel.swift in Sources */,
@@ -404,6 +489,7 @@
 		};
 		7555FFA6242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 481497DDB49C6FB259D8D539 /* Pods-iosApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -432,6 +518,7 @@
 		};
 		7555FFA7242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6788DB15CF5316E2740503C /* Pods-iosApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
