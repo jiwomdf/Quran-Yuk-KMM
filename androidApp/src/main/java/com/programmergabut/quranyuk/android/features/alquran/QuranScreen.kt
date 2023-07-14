@@ -35,18 +35,18 @@ fun QuranScreen(
     Column(
         Modifier
             .fillMaxWidth()
-            .background(AppColor.White)
+            .background(AppColor.Black)
     ) {
         Text(
             modifier = Modifier.padding(start = 20.dp, top = 32.dp, bottom = 16.dp),
             text = "Al-Qur’an",
-            fontSize = 16.sp,
+            fontSize = 28.sp,
             color = AppColor.Primary,
             fontFamily = FontFamily(Font(R.font.cairo_bold)),
         )
 
         LazyColumn(
-            modifier = Modifier.padding(bottom = 16.dp, start = 32.dp, end = 32.dp)
+            modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
         ) {
             items(
                 items = allSurah,
