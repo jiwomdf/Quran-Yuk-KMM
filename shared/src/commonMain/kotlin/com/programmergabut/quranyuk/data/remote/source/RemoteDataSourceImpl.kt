@@ -18,7 +18,7 @@ class RemoteDataSourceImpl(
         return httpClient.get(HttpRoutes.All_SURAH).body()
     }
 
-    override suspend fun fetchReadSurahEn(): ReadSurahEnResponse {
-        return httpClient.get(HttpRoutes.READ_SURAH_EN).body()
+    override suspend fun fetchReadSurahEn(surahId: Int): ReadSurahEnResponse {
+        return httpClient.get("${HttpRoutes.READ_SURAH_EN}/$surahId").body()
     }
 }

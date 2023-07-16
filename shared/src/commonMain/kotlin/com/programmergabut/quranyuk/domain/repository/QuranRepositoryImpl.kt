@@ -31,8 +31,8 @@ class QuranRepositoryImpl(
         )
     }
 
-    override suspend fun fetchReadSurahEn(): List<ReadSurahEn> {
-        val data = remote.fetchReadSurahEn()
+    override suspend fun fetchReadSurahEn(surahId: Int): List<ReadSurahEn> {
+        val data = remote.fetchReadSurahEn(surahId)
 
         return ReadSurahEn.mapReadSurahEn(data)
     }

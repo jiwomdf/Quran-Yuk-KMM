@@ -5,5 +5,5 @@ import com.programmergabut.quranyuk.data.remote.response.ReadSurahEnResponse
 
 interface RemoteDataSource {
     suspend fun fetchAllSurah(): AllSurahResponse
-    suspend fun fetchReadSurahEn(): ReadSurahEnResponse
+    suspend fun fetchReadSurahEn(surahId: Int): ReadSurahEnResponse
 }
