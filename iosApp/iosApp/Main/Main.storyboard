@@ -66,6 +66,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="353" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الفَاتِحَة" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIW-Q1-GT5" userLabel="SurahAr">
+                                                    <rect key="frame" x="281" y="11" width="52" height="66"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ucx-yy-rW7" userLabel="Line View">
                                                     <rect key="frame" x="0.0" y="77" width="353" height="1"/>
                                                     <color key="backgroundColor" red="0.15294116739999999" green="0.15294116739999999" blue="0.2588235438" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -112,8 +118,10 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.050980389119999997" green="0.050980389119999997" blue="0.074509806930000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
+                                                <constraint firstItem="ucx-yy-rW7" firstAttribute="top" secondItem="FIW-Q1-GT5" secondAttribute="bottom" id="1Pr-tl-Mro"/>
                                                 <constraint firstItem="ucx-yy-rW7" firstAttribute="top" secondItem="Twa-Tn-GmL" secondAttribute="bottom" constant="8" id="2Rb-h3-I5q"/>
                                                 <constraint firstItem="9JX-OE-qH8" firstAttribute="top" secondItem="jw3-8W-g6k" secondAttribute="top" id="3da-uh-WxO"/>
+                                                <constraint firstItem="FIW-Q1-GT5" firstAttribute="top" secondItem="jw3-8W-g6k" secondAttribute="topMargin" id="5b7-Rb-UqD"/>
                                                 <constraint firstAttribute="trailing" secondItem="ucx-yy-rW7" secondAttribute="trailing" id="ABN-Yy-Djy"/>
                                                 <constraint firstItem="YqK-jZ-no6" firstAttribute="centerX" secondItem="9JX-OE-qH8" secondAttribute="centerX" id="Emf-CU-3Yk"/>
                                                 <constraint firstAttribute="bottom" secondItem="ucx-yy-rW7" secondAttribute="bottom" constant="2" id="NG0-uy-Qkz"/>
@@ -121,12 +129,14 @@
                                                 <constraint firstAttribute="bottom" secondItem="9JX-OE-qH8" secondAttribute="bottom" id="hA7-yG-ROH"/>
                                                 <constraint firstItem="ucx-yy-rW7" firstAttribute="leading" secondItem="jw3-8W-g6k" secondAttribute="leading" id="iEu-Hf-u7q"/>
                                                 <constraint firstItem="9JX-OE-qH8" firstAttribute="top" secondItem="jw3-8W-g6k" secondAttribute="top" id="kCg-Nt-blg"/>
+                                                <constraint firstItem="FIW-Q1-GT5" firstAttribute="trailing" secondItem="jw3-8W-g6k" secondAttribute="trailingMargin" id="ky7-dq-X3f"/>
                                                 <constraint firstAttribute="bottom" secondItem="9JX-OE-qH8" secondAttribute="bottom" id="pF3-eo-qrT"/>
                                                 <constraint firstItem="YqK-jZ-no6" firstAttribute="centerY" secondItem="9JX-OE-qH8" secondAttribute="centerY" id="vem-At-ADw"/>
                                                 <constraint firstItem="Twa-Tn-GmL" firstAttribute="leading" secondItem="9JX-OE-qH8" secondAttribute="trailing" constant="16" id="zvO-SM-ntn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="surahArLabel" destination="FIW-Q1-GT5" id="3nz-sx-QQw"/>
                                             <outlet property="surahDscLabel" destination="ZVg-16-KOl" id="cmq-dG-IcP"/>
                                             <outlet property="surahNameLabel" destination="pcq-9g-UP5" id="vp1-Gh-a7I"/>
                                             <outlet property="surahNumberLabel" destination="YqK-jZ-no6" id="Jps-cp-yWN"/>
