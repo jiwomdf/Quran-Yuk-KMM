@@ -31,26 +31,11 @@ class QuranRepositoryImpl(
         )
     }
 
-    override suspend fun fetchReadSurahEn(surahId: Int): List<ReadSurahEn> {
-        val data = remote.fetchReadSurahEn(surahId)
+    override suspend fun getReadSurahEn(surahId: Int): ReadSurahEn? {
+        val enResponse = remote.fetchReadSurahEn(surahId)
+        val arResponse = remote.fetchReadSurahAr(surahId)
 
-        return ReadSurahEn.mapReadSurahEn(data)
+        return ReadSurahEn.mapReadSurahEn(arResponse)
     }
 
-    /* override suspend fun fetchAllSurah(): List<AllSurahResponse.AllSurah.Ayah> {
-        return networkBoundResource(
-            query = {
-                localDataSource.getAllAgents().map {
-                    it.map { it.toAgent() }
-                }
-            },
-            fetch = {
-                remoteDataSource.getAllAgents()
-            },
-            saveFetchResult = {
-                val items = it.data.map { it.toAgentEntity() }
-                localDataSource.insertAgent(items)
-            }
-        )
-    } */
 }

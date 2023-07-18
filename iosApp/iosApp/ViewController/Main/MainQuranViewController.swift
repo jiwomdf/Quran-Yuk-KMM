@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import shared
 import MaterialComponents.MaterialSnackbar
+import SwiftUI
 
 final class MainQuranViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -40,7 +41,6 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
     
     
     private func reloadViews(data: [Surah]?) {
-        print("jiwo data count: \(String(describing: data?.count))")
         listSurah = data
         tableView.reloadData()
     }
@@ -66,7 +66,10 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let surah = Int32(listSurah?[indexPath.row].number ?? 0)
+        let displayView = UIHostingController(rootView: SurahDetailView(surahId: surah))
+
+        self.navigationController?.pushViewController(displayView, animated: true)
     }
     
 }
