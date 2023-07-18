@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import shared
+import MaterialComponents.MaterialSnackbar
+import SwiftUI
 
 final class MainQuranViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -16,12 +18,18 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBAction func seatchEditingChanged(_ sender: SearchTextField) {
+        viewModel.searchSurah(rawKeyWord: sender.text ?? "")
+    }
+    
+    
     private lazy var viewModel: MainQuranViewModel = {
         let remote = RemoteDataSourceImpl(quranApi: QuranApi())
         let local = DatabaseModule().noteDataSource
         let vm = MainQuranViewModel(quranRepository: QuranRepositoryImpl(remote: remote, local: local))
         vm.didSucceedGetAllSurah = reloadViews
         vm.didFailedGetAllSurah = showErrorMessage
+        vm.didSearchSurah = reloadViews
         return vm
     }()
     
@@ -33,13 +41,13 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
     
     
     private func reloadViews(data: [Surah]?) {
-        print("data count: \(String(describing: data?.count))")
         listSurah = data
         tableView.reloadData()
     }
     
     private func showErrorMessage(error: String) {
-        
+        let message = MDCSnackbarMessage(text: "Something went wrong")
+        MDCSnackbarManager.default.show(message)
     }
     
     
@@ -50,18 +58,18 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constans.SURAH_CELL_ID, for: indexPath) as! SurahTableViewCell
-        
         let surah = self.listSurah?[indexPath.row]
-
         if(surah != nil) {
             cell.setCell(data: surah!)
         }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let surah = Int32(listSurah?[indexPath.row].number ?? 0)
+        let displayView = UIHostingController(rootView: SurahDetailView(surahId: surah))
+
+        self.navigationController?.pushViewController(displayView, animated: true)
     }
     
 }

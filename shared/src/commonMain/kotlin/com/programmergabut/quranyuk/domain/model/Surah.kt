@@ -29,12 +29,12 @@ data class Surah(
         fun mapAllSurah(entity: List<SurahEntity>): List<Surah> {
             return entity.map {
                 Surah(
-                    englishName = it.englishName ?: "",
-                    englishNameTranslation = it.englishNameTranslation ?: "",
-                    name = it.name ?: "",
-                    number = it.number ?: 0,
-                    numberOfAyahs = it.numberOfAyahs ?: 0,
-                    revelationType = it.revelationType ?: "",
+                    englishName = it.englishName,
+                    englishNameTranslation = it.englishNameTranslation ,
+                    name = it.name,
+                    number = it.number,
+                    numberOfAyahs = it.numberOfAyahs,
+                    revelationType = it.revelationType,
                 )
             }
         }

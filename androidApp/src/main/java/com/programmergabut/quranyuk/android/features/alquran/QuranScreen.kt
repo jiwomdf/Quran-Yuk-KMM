@@ -1,6 +1,7 @@
 package com.programmergabut.quranyuk.android.features.alquran
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,6 +21,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.programmergabut.quranyuk.android.MyApplicationTheme
 import com.programmergabut.quranyuk.android.R
+import com.programmergabut.quranyuk.android.features.alquran.components.CustomSearchView
 import com.programmergabut.quranyuk.android.theme.AppColor
 
 @Composable
@@ -29,24 +31,34 @@ fun QuranScreen(
 ) {
     val context = LocalContext.current
     val allSurah = remember {viewModel.allSurah}
+    var search = ""
 
     viewModel.getAllSurah()
 
     Column(
         Modifier
             .fillMaxWidth()
-            .background(AppColor.White)
+            .background(AppColor.Black)
     ) {
         Text(
             modifier = Modifier.padding(start = 20.dp, top = 32.dp, bottom = 16.dp),
             text = "Al-Qur’an",
-            fontSize = 16.sp,
+            fontSize = 28.sp,
             color = AppColor.Primary,
             fontFamily = FontFamily(Font(R.font.cairo_bold)),
         )
 
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            CustomSearchView(search = search, onValueChange = {
+                search = it
+            })
+        }
+
         LazyColumn(
-            modifier = Modifier.padding(bottom = 16.dp, start = 32.dp, end = 32.dp)
+            modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
         ) {
             items(
                 items = allSurah,

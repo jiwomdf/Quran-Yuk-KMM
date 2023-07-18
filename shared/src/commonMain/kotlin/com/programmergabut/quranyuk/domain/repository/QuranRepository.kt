@@ -5,5 +5,5 @@ import com.programmergabut.quranyuk.domain.model.Surah
 
 interface QuranRepository {
     suspend fun getAllSurah(): List<Surah>
-    suspend fun fetchReadSurahEn(): List<ReadSurahEn>
+    suspend fun getReadSurahEn(surahId: Int): ReadSurahEn?
 }

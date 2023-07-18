@@ -12,6 +12,8 @@ import shared
 @MainActor class MainQuranViewModel {
     private var quranRepository: QuranRepository? = nil
 
+    var temptSurahs: [Surah]? = nil
+    var didSearchSurah: (([Surah]?) -> Void)?
     var didSucceedGetAllSurah: (([Surah]?) -> Void)?
     var didFailedGetAllSurah: ((String) -> Void)?
     
@@ -22,11 +24,27 @@ import shared
     func getAllSurah() {
         Task {
             do {
-                let result = try await quranRepository?.fetchAllSurah() ?? nil
+                let result = try await quranRepository?.getAllSurah() ?? nil
+                temptSurahs = result
                 didSucceedGetAllSurah?(result)
             } catch let ex {
                 didFailedGetAllSurah?(ex.localizedDescription)
             }
         }
+    }
+    
+    func searchSurah(rawKeyWord: String) {
+        var result: [Surah]? = nil
+        if rawKeyWord.isEmpty {
+            result = temptSurahs
+        } else {
+            let keyword = rawKeyWord.lowercased()
+            result = temptSurahs?.filter {
+                let name = $0.englishName.lowercased().replacingOccurrences(of: "-", with: " ")
+                return name.contains(keyword)
+                
+            }
+        }
+        didSearchSurah?(result)
     }
 }

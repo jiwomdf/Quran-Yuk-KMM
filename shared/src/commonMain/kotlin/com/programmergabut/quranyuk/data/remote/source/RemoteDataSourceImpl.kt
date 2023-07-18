@@ -10,7 +10,6 @@ import io.ktor.client.request.get
 class RemoteDataSourceImpl(
     quranApi: QuranApi
 ): RemoteDataSource {
-    //http://api.alquran.cloud/v1/juz/30/en.asad
 
     private val httpClient = quranApi.httpClient
 
@@ -18,7 +17,11 @@ class RemoteDataSourceImpl(
         return httpClient.get(HttpRoutes.All_SURAH).body()
     }
 
-    override suspend fun fetchReadSurahEn(): ReadSurahEnResponse {
-        return httpClient.get(HttpRoutes.READ_SURAH_EN).body()
+    override suspend fun fetchReadSurahEn(surahId: Int): ReadSurahEnResponse {
+        return httpClient.get("${HttpRoutes.READ_SURAH}/$surahId/en.asad").body()
+    }
+
+    override suspend fun fetchReadSurahAr(surahId: Int): ReadSurahEnResponse {
+        return httpClient.get("${HttpRoutes.READ_SURAH}/$surahId").body()
     }
 }

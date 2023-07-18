@@ -16,11 +16,13 @@ class SurahTableViewCell: UITableViewCell {
     @IBOutlet weak var surahNumberLabel: UILabel!
     @IBOutlet weak var surahNameLabel: UILabel!
     @IBOutlet weak var surahDscLabel: UILabel!
+    @IBOutlet weak var surahArLabel: UILabel!
     
     func setCell(data: Surah){
         surahNumberLabel.text = String(data.number)
         surahNameLabel.text = data.englishName
         surahDscLabel.text = data.englishNameTranslation
+        surahArLabel.text = data.name
     }
     
     
