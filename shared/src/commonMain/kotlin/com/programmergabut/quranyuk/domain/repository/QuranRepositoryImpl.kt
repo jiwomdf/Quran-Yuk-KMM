@@ -4,7 +4,6 @@ import com.programmergabut.quranyuk.data.local.LocalDataSource
 import com.programmergabut.quranyuk.data.remote.response.ReadSurahEnResponse
 import com.programmergabut.quranyuk.data.remote.source.RemoteDataSource
 import com.programmergabut.quranyuk.domain.model.ReadSurahEn
-import com.programmergabut.quranyuk.domain.model.ReadSurahEng2
 import com.programmergabut.quranyuk.domain.model.Surah
 import com.programmergabut.quranyuk.utils.networkBoundResource
 import kotlinx.coroutines.runBlocking
@@ -37,7 +36,7 @@ class QuranRepositoryImpl(
         return networkBoundResource(
             query = {
                 runBlocking {
-                    return@runBlocking local.getAyah()
+                    return@runBlocking local.getAyah(surahId)
                 }
             },
             fetch = {
@@ -64,13 +63,9 @@ class QuranRepositoryImpl(
                 local.insertAyah(ReadSurahEn.mapReadSurahEn(it) ?: ReadSurahEn())
             },
             shouldFetch = {
-                false
+                it.ayah.isEmpty()
             }
         )
-//        val enResponse = remote.fetchReadSurahEn(surahId)
-//        val arResponse = remote.fetchReadSurahAr(surahId)
-//
-//        return ReadSurahEn.mapReadSurahEn(arResponse)
     }
 
 }

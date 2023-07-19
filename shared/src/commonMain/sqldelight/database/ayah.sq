@@ -1,7 +1,6 @@
 CREATE TABLE ayahEntity(
-    ayahID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    surahID INTEGER NOT NULL,
-    juz INTEGER NOT NULL,
+    ayahId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    surahId INTEGER NOT NULL,
     number INTEGER NOT NULL,
     numberInSurah INTEGER NOT NULL,
     text TEXT NOT NULL,
@@ -14,14 +13,13 @@ CREATE TABLE ayahEntity(
 );
 
 getAyahsBySurahID:
-SELECT * FROM ayahEntity;
+SELECT * FROM ayahEntity WHERE surahId = :surahId;
 
 insertAyah:
 INSERT OR REPLACE
 INTO ayahEntity(
-    ayahID,
-    surahID,
-    juz,
+    ayahId,
+    surahId,
     number,
     numberInSurah,
     text,
@@ -31,8 +29,8 @@ INTO ayahEntity(
     numberOfAyahs,
     revelationType,
     textEn
-) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
+) VALUES (?,?,?,?,?,?,?,?,?,?,?);
 
 deleteAyahBySurahId:
 DELETE FROM ayahEntity
-WHERE surahID = ?;
+WHERE surahId = ?;
