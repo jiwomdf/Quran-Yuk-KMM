@@ -8,5 +8,5 @@ interface LocalDataSource {
     suspend fun getSurah(): List<Surah>
 
     suspend fun insertAyah(readSurah: ReadSurahEn)
-    suspend fun getAyah(surahId: Int): ReadSurahEn
+    suspend fun getAyah(surahId: Int): ReadSurahEn?
 }

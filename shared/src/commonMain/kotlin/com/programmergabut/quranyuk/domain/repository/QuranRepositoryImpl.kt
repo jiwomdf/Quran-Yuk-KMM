@@ -32,7 +32,7 @@ class QuranRepositoryImpl(
         )
     }
 
-    override suspend fun getReadSurahEn(surahId: Int): ReadSurahEn {
+    override suspend fun getReadSurahEn(surahId: Int): ReadSurahEn? {
         return networkBoundResource(
             query = {
                 runBlocking {
@@ -60,10 +60,12 @@ class QuranRepositoryImpl(
                 arResponse
             },
             saveFetchResult = {
-                local.insertAyah(ReadSurahEn.mapReadSurahEn(it) ?: ReadSurahEn())
+                ReadSurahEn.mapReadSurahEn(it)?.let {
+                    local.insertAyah(it)
+                }
             },
             shouldFetch = {
-                it.ayah.isEmpty()
+                it?.ayah.isNullOrEmpty()
             }
         )
     }

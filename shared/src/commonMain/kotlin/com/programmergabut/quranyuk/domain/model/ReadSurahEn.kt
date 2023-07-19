@@ -2,14 +2,13 @@ package com.programmergabut.quranyuk.domain.model
 
 import com.programmergabut.quranyuk.data.remote.response.ReadSurahEnResponse
 import database.AyahEntity
-import database.SurahEntity
 
 
 data class ReadSurahEn(
-    val number: Int = 0,
-    val name: String = "",
-    val englishName: String = "",
-    val ayah: List<Ayah> = emptyList(),
+    val number: Int,
+    val name: String,
+    val englishName: String,
+    val ayah: List<Ayah>,
 ) {
 
     data class Ayah(
@@ -38,7 +37,7 @@ data class ReadSurahEn(
             }
         }
 
-        fun mapReadSurahEnToEntity(entity: List<AyahEntity>?): ReadSurahEn {
+        fun mapReadSurahEnToEntity(entity: List<AyahEntity>?): ReadSurahEn? {
             return entity?.let { ayah ->
                 ReadSurahEn(
                     number = ayah[0].number.toInt(),
@@ -53,7 +52,7 @@ data class ReadSurahEn(
                         )
                     }
                 )
-            } ?: ReadSurahEn()
+            }
         }
     }
 }

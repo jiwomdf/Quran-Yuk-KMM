@@ -14,14 +14,14 @@ import kotlinx.coroutines.launch
 
 interface IQuranViewModel {
     val allSurah: MutableList<Surah>
-    val ayahById: MutableState<ReadSurahEn>
+    val ayahById: MutableState<ReadSurahEn?>
     fun getAllSurah()
 
     fun getAyahId()
 }
 class FakeQuranViewModel : IQuranViewModel {
     override val allSurah = mutableStateListOf<Surah>()
-    override val ayahById = mutableStateOf(ReadSurahEn())
+    override val ayahById: MutableState<ReadSurahEn?> = mutableStateOf(null)
     override fun getAllSurah() {}
     override fun getAyahId() {}
 }
@@ -30,7 +30,7 @@ class QuranViewModel(
     private val repository: QuranRepositoryImpl,
 ): IQuranViewModel, ViewModel() {
     override val allSurah = mutableStateListOf<Surah>()
-    override val ayahById = mutableStateOf(ReadSurahEn())
+    override val ayahById: MutableState<ReadSurahEn?> = mutableStateOf(null)
 
 
     override fun getAllSurah() {

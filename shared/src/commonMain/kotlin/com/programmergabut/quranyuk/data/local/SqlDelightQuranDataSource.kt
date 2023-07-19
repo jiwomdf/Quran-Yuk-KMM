@@ -51,7 +51,7 @@ class SqlDelightQuranDataSource(db: QuranDatabase): LocalDataSource {
     }
 
 
-    override suspend fun getAyah(surahId: Int): ReadSurahEn {
+    override suspend fun getAyah(surahId: Int): ReadSurahEn? {
         return ReadSurahEn.mapReadSurahEnToEntity(
             ayahQueries
                 .getAyahsBySurahID(surahId.toLong())
