@@ -13,7 +13,7 @@ extension SurahDetailView {
     @MainActor class SurahDetailViewModel: ObservableObject {
         private var quranRepository: QuranRepository? = nil
         
-        @Published var listAyah = [ReadSurah.Ayah]()
+        @Published var surah: ReadSurah? = nil
 
         init(quranRepository: QuranRepository? = nil) {
             self.quranRepository = quranRepository
@@ -26,29 +26,9 @@ extension SurahDetailView {
         func getSurahById(surahId: Int32) {
             Task {
                 do {
-                    print("jiwo surahId\(surahId) kotlin \(KotlinInt(value: surahId))")
-                    let data = try await quranRepository?.getReadSurah(surahId: surahId) ?? nil
-                    print("jiwo \(data)")
-                    self.listAyah = data?.ayah ?? []
+                    self.surah = try await quranRepository?.getReadSurah(surahId: surahId) ?? nil                
                 } catch let ex {
-                    self.listAyah = []
-                }
-            }
-        }
-        
-        func getSurahByIdFake(surahId: Int32) {
-            Task {
-                do {
-                    self.listAyah = [
-                        ReadSurah.Ayah(
-                            number: 1, text: "صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ", textEn: "Bismillah hirohman nirohim", numberInSurah: 1
-                        ),
-                        ReadSurah.Ayah(
-                            number: 2, text: "صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ", textEn: "Bismillah hirohman nirohim", numberInSurah: 2
-                        )
-                    ]
-                } catch let ex {
-                    self.listAyah = []
+                    self.surah = nil
                 }
             }
         }

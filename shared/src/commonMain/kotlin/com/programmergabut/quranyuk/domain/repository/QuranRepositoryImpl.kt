@@ -52,7 +52,7 @@ class QuranRepositoryImpl(
                 }
             },
             shouldFetch = {
-                true
+                it?.ayah.isNullOrEmpty()
             }
         )
     }

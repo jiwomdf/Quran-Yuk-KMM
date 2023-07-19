@@ -41,7 +41,7 @@ class SqlDelightQuranDataSource(db: QuranDatabase): LocalDataSource {
                 numberInSurah = it.numberInSurah.toLong(),
                 text = it.text,
                 englishName = readSurah.englishName,
-                englishNameTranslation = readSurah.englishName,
+                englishNameTranslation = readSurah.englishNameTranslation,
                 name = readSurah.name,
                 numberOfAyahs = it.number.toString(),
                 revelationType = it.number.toString(),
