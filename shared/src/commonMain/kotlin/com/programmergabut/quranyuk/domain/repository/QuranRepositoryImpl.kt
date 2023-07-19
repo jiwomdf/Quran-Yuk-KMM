@@ -34,26 +34,6 @@ class QuranRepositoryImpl(
     }
 
     override suspend fun getReadSurahEn(surahId: Int): ReadSurahEn {
-
-        val hashMapOfAyah = hashMapOf<Int, ReadSurahEnResponse.ReadSurahEn.Ayah>()
-        val arResponse = remote.fetchReadSurahEn(surahId)
-        val enResponse = remote.fetchReadSurahAr(surahId)
-
-        arResponse.data?.ayahs?.indices?.forEach { i ->
-            if (hashMapOfAyah[i] == null) {
-                hashMapOfAyah[i] = arResponse.data?.ayahs?.get(i) ?: ReadSurahEnResponse.ReadSurahEn.Ayah()
-            }
-        }
-
-        enResponse.data?.ayahs?.indices?.forEach { i ->
-            if (hashMapOfAyah[i] != null) {
-                hashMapOfAyah[i]?.textEn = enResponse.data?.ayahs?.get(i)?.text
-            }
-        }
-
-        arResponse.data?.ayahs = hashMapOfAyah.values.toList()
-
-
         return networkBoundResource(
             query = {
                 runBlocking {
@@ -61,6 +41,23 @@ class QuranRepositoryImpl(
                 }
             },
             fetch = {
+                val hashMapOfAyah = hashMapOf<Int, ReadSurahEnResponse.ReadSurahEn.Ayah?>()
+                val arResponse = remote.fetchReadSurahEn(surahId)
+                val enResponse = remote.fetchReadSurahAr(surahId)
+
+                arResponse.data?.ayahs?.indices?.forEach { i ->
+                    if (hashMapOfAyah[i] == null) {
+                        hashMapOfAyah[i] = arResponse.data?.ayahs?.get(i)
+                    }
+                }
+
+                enResponse.data?.ayahs?.indices?.forEach { i ->
+                    if (hashMapOfAyah[i] != null) {
+                        hashMapOfAyah[i]?.textEn = enResponse.data?.ayahs?.get(i)?.text
+                    }
+                }
+
+                arResponse.data?.ayahs = hashMapOfAyah.values.toList()
                 arResponse
             },
             saveFetchResult = {

@@ -34,16 +34,16 @@ data class ReadSurahEn(
                     englishName = ayah.englishName ?: "",
                     ayah = ayah.ayahs?.map {
                         Ayah(
-                            number = it.number ?: 0,
-                            text = it.text ?: "",
-                            textEng = it.text ?: "",
-                            numberInSurah = it.numberInSurah ?: 0,
-                            juz = it.juz ?: 0,
-                            manzil = it.manzil ?: 0,
-                            page = it.page ?: 0,
-                            ruku = it.ruku ?: 0,
-                            hizbQuarter = it.hizbQuarter ?: 0,
-                            sajda = it.sajda ?: false,
+                            number = it?.number ?: 0,
+                            text = it?.text ?: "",
+                            textEng = it?.text ?: "",
+                            numberInSurah = it?.numberInSurah ?: 0,
+                            juz = it?.juz ?: 0,
+                            manzil = it?.manzil ?: 0,
+                            page = it?.page ?: 0,
+                            ruku = it?.ruku ?: 0,
+                            hizbQuarter = it?.hizbQuarter ?: 0,
+                            sajda = it?.sajda ?: false,
                         )
                     }
                 )

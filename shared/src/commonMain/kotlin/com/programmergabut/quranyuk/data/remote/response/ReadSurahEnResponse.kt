@@ -17,7 +17,7 @@ data class ReadSurahEnResponse(
         @SerialName("englishNameTranslation") val englishNameTranslation: String? = null,
         @SerialName("revelationType") val revelationType: String? = null,
         @SerialName("numberOfAyahs") val numberOfAyahs: Int? = null,
-        @SerialName("ayahs") var ayahs: List<Ayah>? = null,
+        @SerialName("ayahs") var ayahs: List<Ayah?>? = null,
     ) {
 
         @Serializable

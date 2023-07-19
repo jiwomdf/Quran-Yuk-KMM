@@ -33,22 +33,21 @@ class SqlDelightQuranDataSource(db: QuranDatabase): LocalDataSource {
         )
     }
 
-    override suspend fun insertAyah(ayah: ReadSurahEn) {
-        ayah.ayah?.forEach { ayahItem ->
+    override suspend fun insertAyah(readSurah: ReadSurahEn) {
+        readSurah.ayah?.forEach {
             ayahQueries.insertAyah(
-                ayahID = ayahItem.number.toLong(),
-                surahID = ayahItem.number.toLong(),
-                juz = ayahItem.juz.toLong(),
-                number = ayahItem.number.toLong(),
-                numberInSurah = ayahItem.numberInSurah.toLong(),
-                text = ayahItem.text,
-                englishName = ayah.englishName ?: "",
-                englishNameTranslation = ayah.englishName ?: "",
-                name = ayah.name ?: "",
-                numberOfAyahs = ayahItem.number.toString(),
-                revelationType = ayahItem.number.toString(),
-                textEn = ayahItem.textEng,
-                isLastRead = ayahItem.number.toString()
+                ayahID = it.number.toLong(),
+                surahID = readSurah.number?.toLong() ?: 0L ,
+                juz = it.juz.toLong(),
+                number = it.number.toLong(),
+                numberInSurah = it.numberInSurah.toLong(),
+                text = it.text,
+                englishName = readSurah.englishName ?: "",
+                englishNameTranslation = readSurah.englishName ?: "",
+                name = readSurah.name ?: "",
+                numberOfAyahs = it.number.toString(),
+                revelationType = it.number.toString(),
+                textEn = it.textEng,
             )
         }
     }

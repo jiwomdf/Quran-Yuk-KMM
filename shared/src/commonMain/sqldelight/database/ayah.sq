@@ -10,8 +10,7 @@ CREATE TABLE ayahEntity(
     name TEXT NOT NULL,
     numberOfAyahs TEXT NOT NULL,
     revelationType TEXT NOT NULL,
-    textEn TEXT NOT NULL,
-    isLastRead TEXT NOT NULL
+    textEn TEXT NOT NULL
 );
 
 getAyahsBySurahID:
@@ -31,9 +30,8 @@ INTO ayahEntity(
     name,
     numberOfAyahs,
     revelationType,
-    textEn,
-    isLastRead
-) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);
+    textEn
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
 
 deleteAyahBySurahId:
 DELETE FROM ayahEntity
