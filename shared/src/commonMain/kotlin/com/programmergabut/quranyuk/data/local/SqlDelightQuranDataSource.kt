@@ -34,14 +34,31 @@ class SqlDelightQuranDataSource(db: QuranDatabase): LocalDataSource {
     }
 
     override suspend fun insertAyah(ayah: ReadSurahEn) {
-        ReadSurahEn.mapReadSurahEnToEntity(ayah)
+        ayah.ayah?.forEach { ayahItem ->
+            ayahQueries.insertAyah(
+                ayahID = ayahItem.number.toLong(),
+                surahID = ayahItem.number.toLong(),
+                juz = ayahItem.juz.toLong(),
+                number = ayahItem.number.toLong(),
+                numberInSurah = ayahItem.numberInSurah.toLong(),
+                text = ayahItem.text,
+                englishName = ayah.englishName ?: "",
+                englishNameTranslation = ayah.englishName ?: "",
+                name = ayah.name ?: "",
+                numberOfAyahs = ayahItem.number.toString(),
+                revelationType = ayahItem.number.toString(),
+                textEn = ayahItem.textEng,
+                isLastRead = ayahItem.number.toString()
+            )
+        }
     }
 
 
-    override suspend fun getAyah(): ReadSurahEng2 {
-        return ReadSurahEng2.mapEntityToSurahEng2(
+    override suspend fun getAyah(): ReadSurahEn {
+        return ReadSurahEn.mapReadSurahEnToEntity(
             ayahQueries
                 .getAyahsBySurahID()
+                .executeAsOne()
         )
     }
 

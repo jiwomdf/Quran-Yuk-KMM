@@ -27,12 +27,12 @@ data class ReadSurahEn(
 
     companion object {
         fun mapReadSurahEn(response: ReadSurahEnResponse): ReadSurahEn? {
-            return response.data?.let {
+            return response.data?.let { ayah ->
                 ReadSurahEn(
-                    number = it.number ?: 0,
-                    name = it.name ?: "",
-                    englishName = it.englishName ?: "",
-                    ayah = it.ayahs?.map {
+                    number = ayah.number ?: 0,
+                    name = ayah.name ?: "",
+                    englishName = ayah.englishName ?: "",
+                    ayah = ayah.ayahs?.map {
                         Ayah(
                             number = it.number ?: 0,
                             text = it.text ?: "",
@@ -45,30 +45,54 @@ data class ReadSurahEn(
                             hizbQuarter = it.hizbQuarter ?: 0,
                             sajda = it.sajda ?: false,
                         )
-                    } ?: emptyList()
+                    }
                 )
             }
 
         }
 
-        fun mapReadSurahEnToEntity(response: ReadSurahEn): AyahEntity {
-            return response.let {
-                AyahEntity(
-                    ayahID = it.ayah?.get(0)?.number!!.toLong(),
-                    surahID = it.ayah[0].number.toLong() ,
-                    juz = it.ayah.get(0).juz.toLong(),
-                    number = it.ayah.get(0).number.toLong(),
-                    numberInSurah = it.ayah[0].numberInSurah.toLong(),
-                    text = it.ayah[0].text,
-                    englishName= it.englishName ?: "",
-                    englishNameTranslation = it.englishName ?: "",
-                    name = it.name ?: "",
-                    numberOfAyahs = it.ayah.get(0).number.toString(),
-                    revelationType = it.ayah.get(0).number.toString(),
-                    textEn = it.ayah[0].textEng,
-                    isLastRead = it.ayah.get(0).number.toString()
-                )
+//        fun mapReadSurahEnToEntity(response: ReadSurahEn): AyahEntity {
+//            return response.let {
+//                AyahEntity(
+//                    ayahID = it.ayah?.get(0)?.number!!.toLong(),
+//                    surahID = it.ayah[0].number.toLong() ,
+//                    juz = it.ayah.get(0).juz.toLong(),
+//                    number = it.ayah.get(0).number.toLong(),
+//                    numberInSurah = it.ayah[0].numberInSurah.toLong(),
+//                    text = it.ayah[0].text,
+//                    englishName= it.englishName ?: "",
+//                    englishNameTranslation = it.englishName ?: "",
+//                    name = it.name ?: "",
+//                    numberOfAyahs = it.ayah.get(0).number.toString(),
+//                    revelationType = it.ayah.get(0).number.toString(),
+//                    textEn = it.ayah[0].textEng,
+//                    isLastRead = it.ayah.get(0).number.toString()
+//                )
+//
+//            }
+//        }
 
+        fun mapReadSurahEnToEntity(entity: AyahEntity): ReadSurahEn {
+            return entity.let { ayah ->
+                ReadSurahEn(
+                    number = ayah.number.toInt(),
+                    name = ayah.name ,
+                    englishName = ayah.englishName ,
+                    ayah = emptyList<Ayah>().map{
+                        Ayah(
+                            number = it.number,
+                            text = it.text ,
+                            textEng = it.text ,
+                            numberInSurah = it.numberInSurah,
+                            juz = it.juz ,
+                            manzil = it.manzil ,
+                            page = it.page ,
+                            ruku = it.ruku ,
+                            hizbQuarter = it.hizbQuarter ,
+                            sajda = it.sajda ,
+                        )
+                    }
+                )
             }
         }
 

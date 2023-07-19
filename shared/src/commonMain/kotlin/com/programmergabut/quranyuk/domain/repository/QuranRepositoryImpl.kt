@@ -33,23 +33,25 @@ class QuranRepositoryImpl(
         )
     }
 
-    override suspend fun getReadSurahEn(surahId: Int): ReadSurahEng2 {
+    override suspend fun getReadSurahEn(surahId: Int): ReadSurahEn {
 
         val hashMapOfAyah = hashMapOf<Int, ReadSurahEnResponse.ReadSurahEn.Ayah>()
         val arResponse = remote.fetchReadSurahEn(surahId)
         val enResponse = remote.fetchReadSurahAr(surahId)
 
-        for(i in arResponse.data?.ayahs?.indices!!){
-            if(hashMapOfAyah[i] == null)
-                hashMapOfAyah[i] = arResponse.data?.ayahs!![i]
+        arResponse.data?.ayahs?.indices?.forEach { i ->
+            if (hashMapOfAyah[i] == null) {
+                hashMapOfAyah[i] = arResponse.data?.ayahs?.get(i) ?: ReadSurahEnResponse.ReadSurahEn.Ayah()
+            }
         }
 
-        for(i in enResponse.data?.ayahs?.indices!!){
-            if(hashMapOfAyah[i] != null)
-                hashMapOfAyah[i]?.textEn = enResponse.data!!.ayahs?.get(i)?.text
+        enResponse.data?.ayahs?.indices?.forEach { i ->
+            if (hashMapOfAyah[i] != null) {
+                hashMapOfAyah[i]?.textEn = enResponse.data?.ayahs?.get(i)?.text
+            }
         }
 
-        arResponse.data!!.ayahs = hashMapOfAyah.values.toList()
+        arResponse.data?.ayahs = hashMapOfAyah.values.toList()
 
 
         return networkBoundResource(
@@ -62,7 +64,7 @@ class QuranRepositoryImpl(
                 arResponse
             },
             saveFetchResult = {
-                ReadSurahEn.mapReadSurahEn(it)?.let { it1 -> local.insertAyah(it1) }
+                local.insertAyah(ReadSurahEn.mapReadSurahEn(it) ?: ReadSurahEn())
             },
             shouldFetch = {
                 false
