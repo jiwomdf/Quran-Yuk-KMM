@@ -34,6 +34,7 @@ fun QuranScreen(
     var search = ""
 
     viewModel.getAllSurah()
+    viewModel.getAyahId()
 
     Column(
         Modifier

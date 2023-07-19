@@ -31,6 +31,9 @@ data class ReadSurahEnResponse(
             @SerialName("ruku") val ruku: Int? = null,
             @SerialName("hizbQuarter") val hizbQuarter: Int? = null,
             @SerialName("sajda") val sajda: Boolean? = null,
+
+            @SerialName("textEn") var textEn: String? = null,
+
         )
     }
 }
