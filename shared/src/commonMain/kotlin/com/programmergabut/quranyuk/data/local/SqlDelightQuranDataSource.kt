@@ -1,7 +1,7 @@
 package com.programmergabut.quranyuk.data.local
 
 import com.programmergabut.quranyuk.QuranDatabase
-import com.programmergabut.quranyuk.domain.model.ReadSurahEn
+import com.programmergabut.quranyuk.domain.model.ReadSurah
 import com.programmergabut.quranyuk.domain.model.Surah
 
 class SqlDelightQuranDataSource(db: QuranDatabase): LocalDataSource {
@@ -32,7 +32,7 @@ class SqlDelightQuranDataSource(db: QuranDatabase): LocalDataSource {
         )
     }
 
-    override suspend fun insertAyah(readSurah: ReadSurahEn) {
+    override suspend fun insertAyah(readSurah: ReadSurah) {
         readSurah.ayah.forEach {
             ayahQueries.insertAyah(
                 ayahId = it.number.toLong(),
@@ -40,19 +40,19 @@ class SqlDelightQuranDataSource(db: QuranDatabase): LocalDataSource {
                 number = it.number.toLong(),
                 numberInSurah = it.numberInSurah.toLong(),
                 text = it.text,
-                englishName = readSurah.englishName ?: "",
-                englishNameTranslation = readSurah.englishName ?: "",
-                name = readSurah.name ?: "",
+                englishName = readSurah.englishName,
+                englishNameTranslation = readSurah.englishName,
+                name = readSurah.name,
                 numberOfAyahs = it.number.toString(),
                 revelationType = it.number.toString(),
-                textEn = it.textEng,
+                textEn = it.textEn,
             )
         }
     }
 
 
-    override suspend fun getAyah(surahId: Int): ReadSurahEn? {
-        return ReadSurahEn.mapReadSurahEnToEntity(
+    override suspend fun getAyah(surahId: Int): ReadSurah? {
+        return ReadSurah.mapReadSurahEnToEntity(
             ayahQueries
                 .getAyahsBySurahID(surahId.toLong())
                 .executeAsList()

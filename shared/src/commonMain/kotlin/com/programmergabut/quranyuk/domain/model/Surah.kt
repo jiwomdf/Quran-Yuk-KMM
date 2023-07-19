@@ -1,6 +1,6 @@
 package com.programmergabut.quranyuk.domain.model
 
-import com.programmergabut.quranyuk.data.remote.response.AllSurahResponse
+import com.programmergabut.quranyuk.data.remote.response.allsurah.AllSurahResponse
 import database.SurahEntity
 
 data class Surah(
@@ -29,12 +29,12 @@ data class Surah(
         fun mapAllSurah(entity: List<SurahEntity>): List<Surah> {
             return entity.map {
                 Surah(
-                    englishName = it.englishName,
-                    englishNameTranslation = it.englishNameTranslation ,
-                    name = it.name,
+                    englishName = it.englishName ?: "",
+                    englishNameTranslation = it.englishNameTranslation ?: "",
+                    name = it.name ?: "",
                     number = it.number,
-                    numberOfAyahs = it.numberOfAyahs,
-                    revelationType = it.revelationType,
+                    numberOfAyahs = it.numberOfAyahs ?: 0,
+                    revelationType = it.revelationType ?: "",
                 )
             }
         }

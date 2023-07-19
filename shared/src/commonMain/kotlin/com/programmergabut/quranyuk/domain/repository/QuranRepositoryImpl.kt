@@ -1,9 +1,9 @@
 package com.programmergabut.quranyuk.domain.repository
 
 import com.programmergabut.quranyuk.data.local.LocalDataSource
-import com.programmergabut.quranyuk.data.remote.response.ReadSurahEnResponse
+import com.programmergabut.quranyuk.data.remote.response.readsurah.ReadSurahCombinedResponse
 import com.programmergabut.quranyuk.data.remote.source.RemoteDataSource
-import com.programmergabut.quranyuk.domain.model.ReadSurahEn
+import com.programmergabut.quranyuk.domain.model.ReadSurah
 import com.programmergabut.quranyuk.domain.model.Surah
 import com.programmergabut.quranyuk.utils.networkBoundResource
 import kotlinx.coroutines.runBlocking
@@ -32,7 +32,7 @@ class QuranRepositoryImpl(
         )
     }
 
-    override suspend fun getReadSurahEn(surahId: Int): ReadSurahEn? {
+    override suspend fun getReadSurah(surahId: Int): ReadSurah? {
         return networkBoundResource(
             query = {
                 runBlocking {
@@ -40,32 +40,19 @@ class QuranRepositoryImpl(
                 }
             },
             fetch = {
-                val hashMapOfAyah = hashMapOf<Int, ReadSurahEnResponse.ReadSurahEn.Ayah?>()
-                val arResponse = remote.fetchReadSurahEn(surahId)
-                val enResponse = remote.fetchReadSurahAr(surahId)
-
-                arResponse.data?.ayahs?.indices?.forEach { i ->
-                    if (hashMapOfAyah[i] == null) {
-                        hashMapOfAyah[i] = arResponse.data?.ayahs?.get(i)
-                    }
-                }
-
-                enResponse.data?.ayahs?.indices?.forEach { i ->
-                    if (hashMapOfAyah[i] != null) {
-                        hashMapOfAyah[i]?.textEn = enResponse.data?.ayahs?.get(i)?.text
-                    }
-                }
-
-                arResponse.data?.ayahs = hashMapOfAyah.values.toList()
-                arResponse
+                val arResponse = remote.fetchReadSurahAr(surahId)
+                val enResponse = remote.fetchReadSurahEn(surahId)
+                val combinedResponse = ReadSurahCombinedResponse
+                    .mapReadSurahCombinedResponse(arResponse, enResponse)
+                combinedResponse
             },
             saveFetchResult = {
-                ReadSurahEn.mapReadSurahEn(it)?.let {
+                ReadSurah.mapReadSurahEn(it)?.let {
                     local.insertAyah(it)
                 }
             },
             shouldFetch = {
-                it?.ayah.isNullOrEmpty()
+                true
             }
         )
     }

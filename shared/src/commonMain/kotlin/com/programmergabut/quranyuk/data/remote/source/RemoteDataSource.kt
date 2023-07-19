@@ -1,7 +1,7 @@
 package com.programmergabut.quranyuk.data.remote.source
 
-import com.programmergabut.quranyuk.data.remote.response.AllSurahResponse
-import com.programmergabut.quranyuk.data.remote.response.ReadSurahEnResponse
+import com.programmergabut.quranyuk.data.remote.response.allsurah.AllSurahResponse
+import com.programmergabut.quranyuk.data.remote.response.readsurah.ReadSurahEnResponse
 
 interface RemoteDataSource {
     suspend fun fetchAllSurah(): AllSurahResponse

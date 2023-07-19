@@ -32,8 +32,9 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
         vm.didSearchSurah = reloadViews
         return vm
     }()
-    
+   
     override func viewDidLoad() {
+        self.navigationController?.navigationBar.isHidden = true
         tableView.dataSource = self
         tableView.delegate = self
         viewModel.getAllSurah()

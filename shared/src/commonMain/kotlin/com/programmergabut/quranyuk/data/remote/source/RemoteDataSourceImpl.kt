@@ -2,8 +2,8 @@ package com.programmergabut.quranyuk.data.remote.source
 
 import com.programmergabut.quranyuk.data.remote.network.HttpRoutes
 import com.programmergabut.quranyuk.data.remote.network.QuranApi
-import com.programmergabut.quranyuk.data.remote.response.AllSurahResponse
-import com.programmergabut.quranyuk.data.remote.response.ReadSurahEnResponse
+import com.programmergabut.quranyuk.data.remote.response.allsurah.AllSurahResponse
+import com.programmergabut.quranyuk.data.remote.response.readsurah.ReadSurahEnResponse
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 

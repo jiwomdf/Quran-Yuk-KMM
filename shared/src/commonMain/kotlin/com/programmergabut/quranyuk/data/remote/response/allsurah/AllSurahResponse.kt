@@ -1,4 +1,4 @@
-package com.programmergabut.quranyuk.data.remote.response
+package com.programmergabut.quranyuk.data.remote.response.allsurah
 
 import com.programmergabut.quranyuk.common.BaseResponse
 import kotlinx.serialization.SerialName
@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AllSurahResponse(
-    @SerialName("data") var data: List<AllSurah>? = null
+    @SerialName("data") var data: List<AllSurah>?
 ): BaseResponse() {
     @Serializable
     data class AllSurah(
