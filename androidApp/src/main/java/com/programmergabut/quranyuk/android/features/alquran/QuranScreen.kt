@@ -80,25 +80,16 @@ fun QuranScreen(
             })
         }
 
-        if(allSurah.size <= 0) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center,
-            ) {
-                CircularProgressIndicator(color = Primary)
-            }
-        } else {
-            LazyColumn(
-                modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
-            ) {
-                items(allSurah){ surahs ->
-                    SurahListItem(
-                        data = surahs,
-                        onItemClick = {
-                            navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}" + "/${surahs.numberOfAyahs}")
-                        }
-                    )
-                }
+        LazyColumn(
+            modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
+        ) {
+            items(allSurah){ surahs ->
+                SurahListItem(
+                    data = surahs,
+                    onItemClick = {
+                        navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}" + "/${surahs.numberOfAyahs}")
+                    }
+                )
             }
         }
     }

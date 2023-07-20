@@ -51,6 +51,7 @@ fun CustomSearchView(
                 .fillMaxWidth(),
             value = search,
             onValueChange = onValueChange,
+            maxLines = 1,
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = AppColor.Black,
                 placeholderColor = AppColor.Gray,

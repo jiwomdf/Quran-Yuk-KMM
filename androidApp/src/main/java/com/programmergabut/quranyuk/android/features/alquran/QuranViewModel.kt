@@ -38,6 +38,7 @@ class QuranViewModel(
     }
 
     override fun searchSurah(query: String) {
+        tempSearch.clear()
         if(query.isEmpty()) {
             tempSearch.addAll(allSurah)
         } else {
