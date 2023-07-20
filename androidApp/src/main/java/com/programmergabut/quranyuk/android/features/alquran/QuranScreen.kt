@@ -3,13 +3,19 @@ package com.programmergabut.quranyuk.android.features.alquran
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.Font
@@ -42,8 +48,13 @@ fun QuranScreen(
     viewModel: IQuranViewModel
 ) {
     val context = LocalContext.current
-    val allSurah = remember {viewModel.allSurah}
-    var search = ""
+//    val allSurah = remember {viewModel.allSurah}
+    val searchText by viewModel.searchText.collectAsState()
+    val isSearching by viewModel.isSearching.collectAsState()
+    val allSurah by viewModel.tempSearch.collectAsState()
+    var text = remember { mutableStateOf("") }
+
+
 
     viewModel.getAllSurah()
 
@@ -64,25 +75,33 @@ fun QuranScreen(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            CustomSearchView(search = search, onValueChange = {
-                search = it
+            CustomSearchView(search = searchText, onValueChange = {
+                viewModel.onSearchTextChange(it)
             })
         }
-
-        LazyColumn(
-            modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
-        ) {
-            items(
-                items = allSurah,
-                key = { it.name}
-            ) { surahs ->
-                SurahListItem(
-                    data = surahs,
-                    onItemClick = {
-                        navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}" + "/${surahs.numberOfAyahs}")
-                    }
+        if(isSearching) {
+            Box(modifier = Modifier.fillMaxSize()) {
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center)
                 )
             }
+        }else {
+            LazyColumn(
+                modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
+            ) {
+                items(allSurah){ surahs ->
+                    SurahListItem(
+                        data = surahs,
+                        onItemClick = {
+                            navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}" + "/${surahs.numberOfAyahs}")
+                        }
+                    )
+                }
+            }
         }
+
+
+
+
     }
 }
