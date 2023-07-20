@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Divider
@@ -16,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -73,15 +75,16 @@ fun AyahListItem(
             }
             Text(
                 text = data.text,
-                fontSize = 20.sp,
+                fontSize = 24.sp,
                 color = AppColor.White,
+                textAlign = TextAlign.End
             )
         }
 
         Text(
             modifier = Modifier.padding(top = 8.dp),
             text = data.textEn,
-            fontSize = 12.sp,
+            fontSize = 14.sp,
             color = AppColor.White,
             fontFamily = FontFamily(Font(R.font.amiri_regular))
         )

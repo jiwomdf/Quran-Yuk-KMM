@@ -3,21 +3,18 @@ package com.programmergabut.quranyuk.android.features.alquran
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,6 +26,7 @@ import com.programmergabut.quranyuk.android.MyApplicationTheme
 import com.programmergabut.quranyuk.android.R
 import com.programmergabut.quranyuk.android.Screen
 import com.programmergabut.quranyuk.android.features.alquran.components.CustomSearchView
+import com.programmergabut.quranyuk.android.features.alquran.components.SurahListItem
 import com.programmergabut.quranyuk.android.theme.AppColor
 
 @Preview
@@ -47,16 +45,13 @@ fun QuranScreen(
     navController: NavController,
     viewModel: IQuranViewModel
 ) {
-    val context = LocalContext.current
-//    val allSurah = remember {viewModel.allSurah}
-    val searchText by viewModel.searchText.collectAsState()
-    val isSearching by viewModel.isSearching.collectAsState()
-    val allSurah by viewModel.tempSearch.collectAsState()
-    var text = remember { mutableStateOf("") }
 
+    val allSurah = remember { viewModel.tempSearch }
+    var searchText by remember { mutableStateOf("") }
 
-
-    viewModel.getAllSurah()
+    LaunchedEffect(Unit) {
+        viewModel.getAllSurah()
+    }
 
     Column(
         Modifier
@@ -76,32 +71,21 @@ fun QuranScreen(
                 .fillMaxWidth()
         ) {
             CustomSearchView(search = searchText, onValueChange = {
-                viewModel.onSearchTextChange(it)
+                searchText = it
+                viewModel.searchSurah(it)
             })
         }
-        if(isSearching) {
-            Box(modifier = Modifier.fillMaxSize()) {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
+        LazyColumn(
+            modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
+        ) {
+            items(allSurah){ surahs ->
+                SurahListItem(
+                    data = surahs,
+                    onItemClick = {
+                        navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}" + "/${surahs.numberOfAyahs}")
+                    }
                 )
             }
-        }else {
-            LazyColumn(
-                modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
-            ) {
-                items(allSurah){ surahs ->
-                    SurahListItem(
-                        data = surahs,
-                        onItemClick = {
-                            navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}" + "/${surahs.numberOfAyahs}")
-                        }
-                    )
-                }
-            }
         }
-
-
-
-
     }
 }

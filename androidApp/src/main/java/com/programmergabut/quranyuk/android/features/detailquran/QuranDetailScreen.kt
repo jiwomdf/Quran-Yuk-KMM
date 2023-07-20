@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,7 +33,7 @@ import com.programmergabut.quranyuk.android.theme.AppColor
 
 @Preview
 @Composable
-fun QuranPreview() {
+fun QuranDetailScreenPreview() {
     MyApplicationTheme {
         QuranDetailScreen(
             surahId = 1,
@@ -51,8 +52,11 @@ fun QuranDetailScreen(
     viewModel: IQuranDetailViewModel
 ) {
 
-    viewModel.getAyahId(surahId)
-    val allAyah = remember {viewModel.ayahById}
+    val allAyah = remember { viewModel.ayahById }
+
+    LaunchedEffect(Unit) {
+        viewModel.getAyahId(surahId)
+    }
 
     Column(
         Modifier
@@ -85,7 +89,7 @@ fun QuranDetailScreen(
                 }
                 Column {
                     Text(
-                        text = allAyah.value?.englishName ?: "Al-fatihah",
+                        text = allAyah.value?.englishName ?: "",
                         fontFamily = FontFamily(Font(R.font.cairo_bold)),
                         fontSize = 14.sp,
                         color = AppColor.Primary,
@@ -93,7 +97,7 @@ fun QuranDetailScreen(
                     Text(
                         modifier = Modifier
                             .padding(top = 2.dp),
-                        text = (allAyah.value?.englishNameTranslation ?: "the opening") + " (${numberOfAyahs} Verse)",
+                        text = (allAyah.value?.englishNameTranslation ?: "") + " (${numberOfAyahs} Verse)",
                         fontFamily = FontFamily(Font(R.font.cairo_regular)),
                         color = AppColor.White,
                         fontSize = 12.sp,

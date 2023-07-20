@@ -1,4 +1,4 @@
-package com.programmergabut.quranyuk.android.features.alquran
+package com.programmergabut.quranyuk.android.features.alquran.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,7 +26,7 @@ import com.programmergabut.quranyuk.domain.model.Surah
 
 @Preview
 @Composable
-fun Preview() {
+fun SurahListItemPreview() {
     SurahListItem(
         data = Surah(
             englishName = "Al-Fatihah",
@@ -52,6 +52,7 @@ fun SurahListItem(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(top = 8.dp, bottom = 8.dp)
                 .clickable { onItemClick(data) },
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically

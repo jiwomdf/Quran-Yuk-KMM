@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 
 interface IQuranDetailViewModel {
     val ayahById: MutableState<ReadSurah?>
-
     fun getAyahId(surahId: Int)
 }
 class FakeQuranDetailViewModel : IQuranDetailViewModel {
