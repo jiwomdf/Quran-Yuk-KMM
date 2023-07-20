@@ -81,7 +81,7 @@ fun QuranDetailScreen(
                     Image(
                         modifier = Modifier
                             .clickable {
-                                navController.navigate(Screen.QuranScreen.route)
+                                navController.popBackStack()
                             },
                         painter = painterResource(R.drawable.ic_arrow_back),
                         contentDescription = "",
