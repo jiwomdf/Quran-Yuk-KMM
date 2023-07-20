@@ -1,4 +1,4 @@
-package com.programmergabut.quranyuk.android.features.alquran
+package com.programmergabut.quranyuk.android.features.detailquran
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Divider
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -20,39 +22,45 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.programmergabut.quranyuk.android.MyApplicationTheme
 import com.programmergabut.quranyuk.android.R
+import com.programmergabut.quranyuk.android.Screen
+import com.programmergabut.quranyuk.android.features.detailquran.components.AyahListItem
 import com.programmergabut.quranyuk.android.theme.AppColor
-import com.programmergabut.quranyuk.domain.model.Surah
 
 @Preview
 @Composable
-fun Preview() {
-    SurahListItem(
-        data = Surah(
-            englishName = "Al-Fatihah",
-            englishNameTranslation= "The Opener (7 Verse)",
-            name = "الفَاتِحَة",
-            number = 0,
-            numberOfAyahs = 1,
-            revelationType = ""
-        ),
-        {}
-    )
+fun QuranPreview() {
+    MyApplicationTheme {
+        QuranDetailScreen(
+            surahId = 1,
+            navController = rememberNavController(),
+            viewModel = FakeQuranDetailViewModel()
+        )
+    }
 }
 
 @Composable
-fun SurahListItem(
-    data: Surah,
-    onItemClick: ((Surah) -> Unit)
+fun QuranDetailScreen(
+    surahId : Int,
+    navController: NavController,
+    viewModel: IQuranDetailViewModel
 ) {
+
+    viewModel.getAyahId(surahId)
+    val allAyah = remember {viewModel.ayahById}
+
     Column(
-        modifier = Modifier
+        Modifier
+            .fillMaxWidth()
             .background(AppColor.Black)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable { onItemClick(data) },
+                .padding(bottom = 16.dp, start = 20.dp, top = 32.dp, end = 20.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -65,20 +73,17 @@ fun SurahListItem(
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        modifier = Modifier,
-                        painter = painterResource(R.drawable.ic_number_surah),
+                        modifier = Modifier
+                            .clickable {
+                                navController.navigate(Screen.QuranScreen.route)
+                            },
+                        painter = painterResource(R.drawable.ic_arrow_back),
                         contentDescription = "",
-                    )
-                    Text(
-                        text = data.number.toString(),
-                        color = AppColor.White,
-                        fontFamily = FontFamily(Font(R.font.cairo_bold)),
-                        fontSize = 12.sp,
                     )
                 }
                 Column {
                     Text(
-                        text = data.englishName,
+                        text = allAyah.value?.englishName ?: "Al-fatihah",
                         fontFamily = FontFamily(Font(R.font.cairo_bold)),
                         fontSize = 14.sp,
                         color = AppColor.Primary,
@@ -86,26 +91,32 @@ fun SurahListItem(
                     Text(
                         modifier = Modifier
                             .padding(top = 2.dp),
-                        text = data.englishNameTranslation + " (${data.numberOfAyahs} Verse)",
+                        text = (allAyah.value?.englishNameTranslation ?: "the opening") + " (${allAyah.value?.ayah?.last()?.number} Verse)",
                         fontFamily = FontFamily(Font(R.font.cairo_regular)),
                         color = AppColor.White,
                         fontSize = 12.sp,
                     )
                 }
             }
-            Text(
-                text = data.name,
-                fontSize = 20.sp,
-                color = AppColor.White,
-                fontFamily = FontFamily(Font(R.font.amiri_regular))
+            Image(
+                modifier = Modifier,
+                painter = painterResource(R.drawable.ic_setting_white),
+                contentDescription = "",
             )
         }
 
-        Divider(
-            color = AppColor.Primary,
-            thickness = 1.dp,
-            modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
-        )
+        LazyColumn(
+            modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
+        ) {
+            items(
+                items = allAyah.value?.ayah ?: emptyList(),
+                key = { it.number}
+            ) { ayahs ->
+                AyahListItem(
+                    data = ayahs,
+                )
+            }
+        }
 
     }
 }

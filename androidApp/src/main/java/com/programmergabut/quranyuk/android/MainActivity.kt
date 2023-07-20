@@ -7,12 +7,16 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.programmergabut.quranyuk.QuranDatabase
 import com.programmergabut.quranyuk.android.features.alquran.QuranScreen
 import com.programmergabut.quranyuk.android.features.alquran.QuranViewModel
+import com.programmergabut.quranyuk.android.features.detailquran.QuranDetailScreen
+import com.programmergabut.quranyuk.android.features.detailquran.QuranDetailViewModel
 import com.programmergabut.quranyuk.data.local.DatabaseDriverFactory
 import com.programmergabut.quranyuk.data.local.SqlDelightQuranDataSource
 import com.programmergabut.quranyuk.data.remote.network.QuranApi
@@ -43,6 +47,24 @@ class MainActivity : ComponentActivity() {
                             val local = SqlDelightQuranDataSource(QuranDatabase(driver))
                             val viewModel = QuranViewModel(QuranRepositoryImpl(remote, local))
                             QuranScreen(navController, viewModel)
+                        }
+                        with(QuranDetailScreen){
+                            composable(
+                                route = Screen.QuranDetailScreen.route + "/{$surahId}",
+                                arguments = listOf(
+                                    navArgument(surahId) {
+                                        type = NavType.IntType
+                                        defaultValue = 0
+                                    }
+                                )
+                            ) {
+                                val surahId = it.arguments?.getInt(surahId, 0) ?: 0
+                                val remote = RemoteDataSourceImpl(QuranApi())
+                                val driver = DatabaseDriverFactory(applicationContext).createDriver()
+                                val local = SqlDelightQuranDataSource(QuranDatabase(driver))
+                                val viewModel = QuranDetailViewModel(QuranRepositoryImpl(remote, local))
+                                QuranDetailScreen(surahId, navController, viewModel)
+                            }
                         }
                     }
                 }

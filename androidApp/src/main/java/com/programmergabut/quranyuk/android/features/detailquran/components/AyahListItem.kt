@@ -1,8 +1,7 @@
-package com.programmergabut.quranyuk.android.features.alquran
+package com.programmergabut.quranyuk.android.features.detailquran.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,28 +21,24 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.programmergabut.quranyuk.android.R
 import com.programmergabut.quranyuk.android.theme.AppColor
-import com.programmergabut.quranyuk.domain.model.Surah
+import com.programmergabut.quranyuk.domain.model.ReadSurah
 
 @Preview
 @Composable
 fun Preview() {
-    SurahListItem(
-        data = Surah(
-            englishName = "Al-Fatihah",
-            englishNameTranslation= "The Opener (7 Verse)",
-            name = "الفَاتِحَة",
-            number = 0,
-            numberOfAyahs = 1,
-            revelationType = ""
-        ),
-        {}
+    AyahListItem(
+        data = ReadSurah.Ayah(
+            number = 1,
+            text = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+            textEn = "Dengan Mneybut nama Allah yang maha pengasih lagi maha penyang",
+            numberInSurah = 1
+        )
     )
 }
 
 @Composable
-fun SurahListItem(
-    data: Surah,
-    onItemClick: ((Surah) -> Unit)
+fun AyahListItem(
+    data: ReadSurah.Ayah,
 ) {
     Column(
         modifier = Modifier
@@ -51,8 +46,7 @@ fun SurahListItem(
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .clickable { onItemClick(data) },
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -70,36 +64,27 @@ fun SurahListItem(
                         contentDescription = "",
                     )
                     Text(
-                        text = data.number.toString(),
+                        text = data.numberInSurah.toString(),
                         color = AppColor.White,
                         fontFamily = FontFamily(Font(R.font.cairo_bold)),
-                        fontSize = 12.sp,
-                    )
-                }
-                Column {
-                    Text(
-                        text = data.englishName,
-                        fontFamily = FontFamily(Font(R.font.cairo_bold)),
-                        fontSize = 14.sp,
-                        color = AppColor.Primary,
-                    )
-                    Text(
-                        modifier = Modifier
-                            .padding(top = 2.dp),
-                        text = data.englishNameTranslation + " (${data.numberOfAyahs} Verse)",
-                        fontFamily = FontFamily(Font(R.font.cairo_regular)),
-                        color = AppColor.White,
                         fontSize = 12.sp,
                     )
                 }
             }
             Text(
-                text = data.name,
+                text = data.text,
                 fontSize = 20.sp,
                 color = AppColor.White,
-                fontFamily = FontFamily(Font(R.font.amiri_regular))
             )
         }
+
+        Text(
+            modifier = Modifier.padding(top = 8.dp),
+            text = data.textEn,
+            fontSize = 12.sp,
+            color = AppColor.White,
+            fontFamily = FontFamily(Font(R.font.amiri_regular))
+        )
 
         Divider(
             color = AppColor.Primary,

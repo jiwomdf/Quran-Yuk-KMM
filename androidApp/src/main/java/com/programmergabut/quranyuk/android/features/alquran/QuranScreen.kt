@@ -21,8 +21,20 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.programmergabut.quranyuk.android.MyApplicationTheme
 import com.programmergabut.quranyuk.android.R
+import com.programmergabut.quranyuk.android.Screen
 import com.programmergabut.quranyuk.android.features.alquran.components.CustomSearchView
 import com.programmergabut.quranyuk.android.theme.AppColor
+
+@Preview
+@Composable
+fun QuranPreview() {
+    MyApplicationTheme {
+        QuranScreen(
+            rememberNavController(),
+            FakeQuranViewModel()
+        )
+    }
+}
 
 @Composable
 fun QuranScreen(
@@ -34,7 +46,6 @@ fun QuranScreen(
     var search = ""
 
     viewModel.getAllSurah()
-    viewModel.getAyahId()
 
     Column(
         Modifier
@@ -66,23 +77,12 @@ fun QuranScreen(
                 key = { it.name}
             ) { surahs ->
                 SurahListItem(
-                    data = surahs
+                    data = surahs,
+                    onItemClick = {
+                        navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}")
+                    }
                 )
             }
         }
-    }
-
-
-
-}
-
-@Preview
-@Composable
-fun QuranPreview() {
-    MyApplicationTheme {
-        QuranScreen(
-            rememberNavController(),
-            FakeQuranViewModel()
-        )
     }
 }
