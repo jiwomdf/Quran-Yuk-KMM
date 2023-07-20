@@ -30,7 +30,7 @@ fun Preview() {
     SurahListItem(
         data = Surah(
             englishName = "Al-Fatihah",
-            englishNameTranslation= "The Opener (7 Verse)",
+            englishNameTranslation= "The Opener",
             name = "الفَاتِحَة",
             number = 0,
             numberOfAyahs = 1,

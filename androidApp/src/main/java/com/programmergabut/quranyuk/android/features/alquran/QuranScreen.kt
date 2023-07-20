@@ -79,7 +79,7 @@ fun QuranScreen(
                 SurahListItem(
                     data = surahs,
                     onItemClick = {
-                        navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}")
+                        navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}" + "/${surahs.numberOfAyahs}")
                     }
                 )
             }

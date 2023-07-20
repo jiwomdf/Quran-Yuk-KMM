@@ -7,4 +7,5 @@ sealed class Screen(val route: String) {
 
 object QuranDetailScreen {
     val surahId = "surah_id"
+    val numberOfAyahs = "number_of_ayahs"
 }

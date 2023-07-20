@@ -36,6 +36,7 @@ fun QuranPreview() {
     MyApplicationTheme {
         QuranDetailScreen(
             surahId = 1,
+            numberOfAyahs = 285,
             navController = rememberNavController(),
             viewModel = FakeQuranDetailViewModel()
         )
@@ -45,6 +46,7 @@ fun QuranPreview() {
 @Composable
 fun QuranDetailScreen(
     surahId : Int,
+    numberOfAyahs: Int,
     navController: NavController,
     viewModel: IQuranDetailViewModel
 ) {
@@ -91,7 +93,7 @@ fun QuranDetailScreen(
                     Text(
                         modifier = Modifier
                             .padding(top = 2.dp),
-                        text = (allAyah.value?.englishNameTranslation ?: "the opening") + " (${allAyah.value?.ayah?.last()?.number} Verse)",
+                        text = (allAyah.value?.englishNameTranslation ?: "the opening") + " (${numberOfAyahs} Verse)",
                         fontFamily = FontFamily(Font(R.font.cairo_regular)),
                         color = AppColor.White,
                         fontSize = 12.sp,
