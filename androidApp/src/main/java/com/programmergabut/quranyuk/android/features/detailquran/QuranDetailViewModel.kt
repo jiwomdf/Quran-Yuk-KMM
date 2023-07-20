@@ -24,8 +24,13 @@ class QuranDetailViewModel(
 
     override fun getAyahId(surahId : Int) {
         viewModelScope.launch {
-            val surahs = repository.getReadSurah(surahId)
-            ayahById.value = surahs
+            kotlin.runCatching {
+                repository.getReadSurah(surahId)
+            }.onSuccess {
+                ayahById.value = it
+            }.onFailure {
+
+            }
         }
     }
 }

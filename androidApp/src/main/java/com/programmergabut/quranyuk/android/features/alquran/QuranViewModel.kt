@@ -31,9 +31,14 @@ class QuranViewModel(
 
     override fun getAllSurah() {
         viewModelScope.launch {
-            val surahs = repository.getAllSurah()
-            allSurah = surahs
-            tempSearch.addAll(allSurah)
+            kotlin.runCatching {
+                repository.getAllSurah()
+            }.onSuccess {
+                allSurah = it
+                tempSearch.addAll(allSurah)
+            }.onFailure {
+
+            }
         }
     }
 
