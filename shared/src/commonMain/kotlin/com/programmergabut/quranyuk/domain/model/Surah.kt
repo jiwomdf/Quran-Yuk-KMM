@@ -11,15 +11,6 @@ data class Surah(
     val numberOfAyahs: Long,
     val revelationType: String
 ) {
-    fun doesMatchSearchQuery(query: String): Boolean {
-        val matchingCombinations = listOf(
-            "$name"
-        )
-
-        return matchingCombinations.any {
-            it.contains(query, ignoreCase = true)
-        }
-    }
 
     companion object {
         fun mapAllSurah(response: AllSurahResponse): List<Surah> {

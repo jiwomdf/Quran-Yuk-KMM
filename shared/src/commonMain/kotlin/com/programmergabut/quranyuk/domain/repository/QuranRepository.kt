@@ -13,5 +13,5 @@ interface QuranRepository {
     suspend fun getLastRead(): LastRead?
 
     @Throws(Exception::class)
-    suspend fun insertLastRead(surahId: Int, ayahId: Int)
+    suspend fun insertLastRead(surahId: Int, ayahId: Int, surahName: String)
 }

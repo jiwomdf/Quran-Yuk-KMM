@@ -1,7 +1,8 @@
 CREATE TABLE lastReadEntity(
     lastReadId INTEGER NOT NULL PRIMARY KEY,
     ayahId INTEGER NOT NULL,
-    surahId INTEGER NOT NULL
+    surahId INTEGER NOT NULL,
+    surahName TEXT NOT NULL
 );
 
 getLastRead:
@@ -12,8 +13,9 @@ INSERT OR REPLACE
 INTO lastReadEntity(
     lastReadId,
     ayahId,
-    surahId
-) VALUES (?,?,?);
+    surahId,
+    surahName
+) VALUES (?,?,?, ?);
 
 deleteLastRead:
 DELETE FROM lastReadEntity;

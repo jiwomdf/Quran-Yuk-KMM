@@ -12,5 +12,5 @@ interface LocalDataSource {
     suspend fun getAyah(surahId: Int): ReadSurah?
 
     suspend fun getLastRead(): LastRead?
-    suspend fun insertLastRead(surahId: Int, ayahId: Int)
+    suspend fun insertLastRead(surahId: Int, ayahId: Int, surahName: String)
 }

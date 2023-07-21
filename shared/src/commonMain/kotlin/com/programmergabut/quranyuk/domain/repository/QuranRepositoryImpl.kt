@@ -64,8 +64,8 @@ class QuranRepositoryImpl(
         }
     }
 
-    override suspend fun insertLastRead(surahId: Int, ayahId: Int) {
-        local.insertLastRead(surahId, ayahId)
+    override suspend fun insertLastRead(surahId: Int, ayahId: Int, surahName: String) {
+        local.insertLastRead(surahId, ayahId, surahName)
     }
 
 }

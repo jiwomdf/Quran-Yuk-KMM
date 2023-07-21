@@ -69,8 +69,8 @@ class SqlDelightQuranDataSource(db: QuranDatabase): LocalDataSource {
         )
     }
 
-    override suspend fun insertLastRead(surahId: Int, ayahId: Int) {
-        lastReadQueries.insertLastRead(0, surahId.toLong(), ayahId.toLong())
+    override suspend fun insertLastRead(surahId: Int, ayahId: Int, surahName: String) {
+        lastReadQueries.insertLastRead(0, surahId.toLong(), ayahId.toLong(), surahName)
     }
 
 }
