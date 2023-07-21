@@ -1,6 +1,7 @@
 package com.programmergabut.quranyuk.data.local
 
 import com.programmergabut.quranyuk.QuranDatabase
+import com.programmergabut.quranyuk.domain.model.LastRead
 import com.programmergabut.quranyuk.domain.model.ReadSurah
 import com.programmergabut.quranyuk.domain.model.Surah
 
@@ -8,6 +9,7 @@ class SqlDelightQuranDataSource(db: QuranDatabase): LocalDataSource {
 
     private val surahQueries = db.surahQueries
     private val ayahQueries = db.ayahQueries
+    private val lastReadQueries = db.lastReadQueries
 
     override suspend fun insertSurah(surah: List<Surah>) {
         surah.forEach {
@@ -57,6 +59,18 @@ class SqlDelightQuranDataSource(db: QuranDatabase): LocalDataSource {
                 .getAyahsBySurahID(surahId.toLong())
                 .executeAsList()
         )
+    }
+
+    override suspend fun getLastRead(): LastRead? {
+        return LastRead.mapLastRead(
+            lastReadQueries
+                .getLastRead()
+                .executeAsOne()
+        )
+    }
+
+    override suspend fun insertLastRead(surahId: Int, ayahId: Int) {
+        lastReadQueries.insertLastRead(0, surahId.toLong(), ayahId.toLong())
     }
 
 }

@@ -1,0 +1,21 @@
+CREATE TABLE lastReadEntity(
+    lastReadId INTEGER NOT NULL PRIMARY KEY,
+    ayahId INTEGER NOT NULL,
+    surahId INTEGER NOT NULL
+);
+
+getLastRead:
+SELECT * FROM lastReadEntity;
+
+insertLastRead:
+INSERT OR REPLACE
+INTO lastReadEntity(
+    lastReadId,
+    ayahId,
+    surahId
+) VALUES (?,?,?);
+
+deleteLastRead:
+DELETE FROM lastReadEntity;
+
+

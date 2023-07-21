@@ -3,6 +3,7 @@ package com.programmergabut.quranyuk.domain.repository
 import com.programmergabut.quranyuk.data.local.LocalDataSource
 import com.programmergabut.quranyuk.data.remote.response.readsurah.ReadSurahCombinedResponse
 import com.programmergabut.quranyuk.data.remote.source.RemoteDataSource
+import com.programmergabut.quranyuk.domain.model.LastRead
 import com.programmergabut.quranyuk.domain.model.ReadSurah
 import com.programmergabut.quranyuk.domain.model.Surah
 import com.programmergabut.quranyuk.utils.networkBoundResource
@@ -55,6 +56,16 @@ class QuranRepositoryImpl(
                 it?.ayah.isNullOrEmpty()
             }
         )
+    }
+
+    override suspend fun getLastRead(): LastRead? {
+        return runBlocking {
+            return@runBlocking local.getLastRead()
+        }
+    }
+
+    override suspend fun insertLastRead(surahId: Int, ayahId: Int) {
+        local.insertLastRead(surahId, ayahId)
     }
 
 }
