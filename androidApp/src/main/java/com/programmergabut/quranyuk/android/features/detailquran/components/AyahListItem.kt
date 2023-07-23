@@ -45,6 +45,7 @@ fun AyahListItem(
     Column(
         modifier = Modifier
             .background(AppColor.Black)
+            .padding(top = 8.dp)
     ) {
         Row(
             modifier = Modifier
@@ -92,7 +93,7 @@ fun AyahListItem(
         Divider(
             color = AppColor.Primary,
             thickness = 1.dp,
-            modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
+            modifier = Modifier.padding(top = 8.dp)
         )
 
     }
