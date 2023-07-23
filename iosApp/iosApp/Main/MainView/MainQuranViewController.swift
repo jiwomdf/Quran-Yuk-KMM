@@ -15,13 +15,10 @@ import SwiftUI
 final class MainQuranViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var listSurah: [Surah]? = nil
+    private lazy var lastReadView = { LastReadView() }()
     
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBAction func seatchEditingChanged(_ sender: SearchTextField) {
-        viewModel.searchSurah(rawKeyWord: sender.text ?? "")
-    }
-    
+    @IBOutlet weak var lastReadCard: UIView!
     
     private lazy var viewModel: MainQuranViewModel = {
         let remote = RemoteDataSourceImpl(quranApi: QuranApi())
@@ -29,21 +26,47 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
         let vm = MainQuranViewModel(quranRepository: QuranRepositoryImpl(remote: remote, local: local))
         vm.didSucceedGetAllSurah = reloadViews
         vm.didFailedGetAllSurah = showErrorMessage
+        vm.didSucceedGetLastRead = getLastRead
+        vm.didFailedGetLastRead = showEmptyLastRead
         vm.didSearchSurah = reloadViews
         return vm
     }()
+    
+    @IBAction func seatchEditingChanged(_ sender: SearchTextField) {
+        viewModel.searchSurah(rawKeyWord: sender.text ?? "")
+    }
+    
+    @IBAction func onLastReadDidTap(_ sender: UIButton) {
+        let displayView = UIHostingController(rootView: SurahDetailView(surahId: 1))
+
+        self.navigationController?.pushViewController(displayView, animated: true)
+    }
    
     override func viewDidLoad() {
         self.navigationController?.navigationBar.isHidden = true
         tableView.dataSource = self
         tableView.delegate = self
         viewModel.getAllSurah()
+        viewModel.getLastRead()
+        
+        lastReadCard.layer.cornerRadius = 8
+        lastReadCard.layer.masksToBounds = true
+        lastReadCard.addSubview(lastReadView)
     }
-    
     
     private func reloadViews(data: [Surah]?) {
         listSurah = data
         tableView.reloadData()
+    }
+    
+    private func getLastRead(lastRead: LastRead?) {
+        let displayView = UIHostingController(rootView: SurahDetailView(surahId: lastRead?.surahId))
+        self.navigationController?.pushViewController(displayView, animated: true)
+    }
+    
+    private func showEmptyLastRead(errMsg: String) {
+        lastReadView.lastReadSurahNameLabel.text = "You’ve not read yet"
+        lastReadView.lastReadDetailLabel.text = ""
     }
     
     private func showErrorMessage(error: String) {
@@ -72,5 +95,7 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
 
         self.navigationController?.pushViewController(displayView, animated: true)
     }
+
     
+
 }

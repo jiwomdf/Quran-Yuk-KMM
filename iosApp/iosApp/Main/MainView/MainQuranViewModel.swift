@@ -17,6 +17,9 @@ import shared
     var didSucceedGetAllSurah: (([Surah]?) -> Void)?
     var didFailedGetAllSurah: ((String) -> Void)?
     
+    var didSucceedGetLastRead: ((LastRead?) -> Void)?
+    var didFailedGetLastRead: ((String) -> Void)?
+    
     init(quranRepository: QuranRepository? = nil) {
         self.quranRepository = quranRepository
     }
@@ -29,6 +32,19 @@ import shared
                 didSucceedGetAllSurah?(result)
             } catch let ex {
                 didFailedGetAllSurah?(ex.localizedDescription)
+            }
+        }
+    }
+    
+    func getLastRead() {
+        Task {
+            do {
+                let result = try await quranRepository?.getLastRead() ?? nil
+                didSucceedGetLastRead?(result)
+            } catch let ex {
+                //TODO: jiwo
+                print(ex)
+                didFailedGetLastRead?(ex.localizedDescription)
             }
         }
     }

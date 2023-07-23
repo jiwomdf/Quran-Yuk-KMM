@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0412ABA92A65A53700B39040 /* ListIndexed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412ABA82A65A53700B39040 /* ListIndexed.swift */; };
+		041D09A12A6D0AEA0024461F /* LastReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D09A02A6D0AEA0024461F /* LastReadView.swift */; };
 		04671EFD2A584911006876C1 /* MainQuranViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04671EFC2A584911006876C1 /* MainQuranViewModel.swift */; };
 		0477D13F2A55007F008EF996 /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477D13E2A55007F008EF996 /* Constans.swift */; };
+		047D26202A6AE674008D5793 /* LastReadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047D261F2A6AE674008D5793 /* LastReadView.xib */; };
+		047D26252A6AEA1A008D5793 /* ViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D26242A6AEA1A008D5793 /* ViewUtil.swift */; };
 		04A87E6E2A53B67200104D43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A87E6D2A53B67200104D43 /* Main.storyboard */; };
-		04B753D02A55093500029B64 /* SurahTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B753CF2A55093500029B64 /* SurahTableViewCell.swift */; };
 		04BF2ADC2A617BE000ED5B76 /* SurahDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF2ADB2A617BE000ED5B76 /* SurahDetailView.swift */; };
 		04D460C72A5319B9009FE872 /* Cairo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460C32A531985009FE872 /* Cairo-Black.ttf */; };
 		04D460C82A5319BC009FE872 /* Cairo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460C52A531985009FE872 /* Cairo-Bold.ttf */; };
@@ -29,6 +31,7 @@
 		04FBF1142A656C4B00C04C3B /* Amiri-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04FBF1112A656C3F00C04C3B /* Amiri-Italic.ttf */; };
 		04FBF1152A656C4E00C04C3B /* Amiri-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04FBF1102A656C3F00C04C3B /* Amiri-Bold.ttf */; };
 		04FBF1172A65939800C04C3B /* SurahDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBF1162A65939800C04C3B /* SurahDetailViewModel.swift */; };
+		04FEBC512A6AE3F90088BDDE /* SurahTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FEBC4E2A6AE3F90088BDDE /* SurahTableViewCell.swift */; };
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
@@ -50,10 +53,12 @@
 
 /* Begin PBXFileReference section */
 		0412ABA82A65A53700B39040 /* ListIndexed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIndexed.swift; sourceTree = "<group>"; };
+		041D09A02A6D0AEA0024461F /* LastReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastReadView.swift; sourceTree = "<group>"; };
 		04671EFC2A584911006876C1 /* MainQuranViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQuranViewModel.swift; sourceTree = "<group>"; };
 		0477D13E2A55007F008EF996 /* Constans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
+		047D261F2A6AE674008D5793 /* LastReadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastReadView.xib; sourceTree = "<group>"; };
+		047D26242A6AEA1A008D5793 /* ViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtil.swift; sourceTree = "<group>"; };
 		04A87E6D2A53B67200104D43 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		04B753CF2A55093500029B64 /* SurahTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurahTableViewCell.swift; sourceTree = "<group>"; };
 		04BF2ADB2A617BE000ED5B76 /* SurahDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurahDetailView.swift; sourceTree = "<group>"; };
 		04D460BE2A531985009FE872 /* Cairo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Regular.ttf"; sourceTree = "<group>"; };
 		04D460BF2A531985009FE872 /* Cairo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Medium.ttf"; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 		04FBF1112A656C3F00C04C3B /* Amiri-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Amiri-Italic.ttf"; path = "../../../../../Downloads/Amiri/Amiri-Italic.ttf"; sourceTree = "<group>"; };
 		04FBF1122A656C3F00C04C3B /* Amiri-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Amiri-Regular.ttf"; path = "../../../../../Downloads/Amiri/Amiri-Regular.ttf"; sourceTree = "<group>"; };
 		04FBF1162A65939800C04C3B /* SurahDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurahDetailViewModel.swift; sourceTree = "<group>"; };
+		04FEBC4E2A6AE3F90088BDDE /* SurahTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurahTableViewCell.swift; sourceTree = "<group>"; };
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
@@ -97,16 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				0412ABA82A65A53700B39040 /* ListIndexed.swift */,
+				047D26242A6AEA1A008D5793 /* ViewUtil.swift */,
 			);
 			path = Util;
-			sourceTree = "<group>";
-		};
-		04B753CE2A55091300029B64 /* TableView */ = {
-			isa = PBXGroup;
-			children = (
-				04B753CF2A55093500029B64 /* SurahTableViewCell.swift */,
-			);
-			path = TableView;
 			sourceTree = "<group>";
 		};
 		04BF2ADA2A617BC300ED5B76 /* Surah Detail */ = {
@@ -121,9 +120,8 @@
 		04D460A82A531487009FE872 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				04D460D02A5326C9009FE872 /* ViewController */,
-				04B753CE2A55091300029B64 /* TableView */,
-				04A87E6D2A53B67200104D43 /* Main.storyboard */,
+				04FEBC4C2A6AE3F90088BDDE /* View */,
+				04D460D02A5326C9009FE872 /* MainView */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -155,13 +153,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		04D460D02A5326C9009FE872 /* ViewController */ = {
+		04D460D02A5326C9009FE872 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				04A87E6D2A53B67200104D43 /* Main.storyboard */,
 				04671EFC2A584911006876C1 /* MainQuranViewModel.swift */,
 				04D460D12A5326ED009FE872 /* MainQuranViewController.swift */,
 			);
-			path = ViewController;
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		04F01ED42A5ECD2A0031DEA0 /* CustomView */ = {
@@ -170,6 +169,32 @@
 				04F01ED52A5ECD3C0031DEA0 /* SearchTextField.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		04FEBC4C2A6AE3F90088BDDE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04FEBC4D2A6AE3F90088BDDE /* TableView */,
+				04FEBC4F2A6AE3F90088BDDE /* LastReadCard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04FEBC4D2A6AE3F90088BDDE /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				04FEBC4E2A6AE3F90088BDDE /* SurahTableViewCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		04FEBC4F2A6AE3F90088BDDE /* LastReadCard */ = {
+			isa = PBXGroup;
+			children = (
+				047D261F2A6AE674008D5793 /* LastReadView.xib */,
+				041D09A02A6D0AEA0024461F /* LastReadView.swift */,
+			);
+			path = LastReadCard;
 			sourceTree = "<group>";
 		};
 		058557D7273AAEEB004C7B11 /* Preview Content */ = {
@@ -310,6 +335,7 @@
 				04D460C92A5319BF009FE872 /* Cairo-ExtraBold.ttf in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 				04D460CA2A5319C1009FE872 /* Cairo-ExtraLight.ttf in Resources */,
+				047D26202A6AE674008D5793 /* LastReadView.xib in Resources */,
 				04D460CB2A5319C4009FE872 /* Cairo-Light.ttf in Resources */,
 				04FBF1152A656C4E00C04C3B /* Amiri-Bold.ttf in Resources */,
 				04D460C72A5319B9009FE872 /* Cairo-Black.ttf in Resources */,
@@ -382,15 +408,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04B753D02A55093500029B64 /* SurahTableViewCell.swift in Sources */,
 				0412ABA92A65A53700B39040 /* ListIndexed.swift in Sources */,
 				04F01ED62A5ECD3C0031DEA0 /* SearchTextField.swift in Sources */,
+				04FEBC512A6AE3F90088BDDE /* SurahTableViewCell.swift in Sources */,
 				04E4D0552A544FF500D64774 /* SceneDelegate.swift in Sources */,
 				04E4D0532A544FC800D64774 /* AppDelegate.swift in Sources */,
 				04671EFD2A584911006876C1 /* MainQuranViewModel.swift in Sources */,
+				047D26252A6AEA1A008D5793 /* ViewUtil.swift in Sources */,
 				04BF2ADC2A617BE000ED5B76 /* SurahDetailView.swift in Sources */,
 				0477D13F2A55007F008EF996 /* Constans.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				041D09A12A6D0AEA0024461F /* LastReadView.swift in Sources */,
 				04FBF1172A65939800C04C3B /* SurahDetailViewModel.swift in Sources */,
 				04D460D22A5326ED009FE872 /* MainQuranViewController.swift in Sources */,
 			);
