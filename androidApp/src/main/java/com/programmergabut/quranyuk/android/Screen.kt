@@ -7,5 +7,5 @@ sealed class Screen(val route: String) {
 
 object QuranDetailScreen {
     const val surahId = "surah_id"
-    const val numberOfAyahs = "number_of_ayahs"
+    const val ayahId = "ayah_id"
 }

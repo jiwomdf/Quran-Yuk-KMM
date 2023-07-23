@@ -37,11 +37,11 @@ fun LastReadPreview() {
                 surahId = 5,
                 ayahId = 98
             )
-        )
+        ){}
         LastRead(
             modifier = Modifier.padding(top = 20.dp),
             null
-        )
+        ){}
     }
 }
 
@@ -49,14 +49,15 @@ fun LastReadPreview() {
 @Composable
 fun LastRead(
     modifier: Modifier,
-    lastRead: LastRead?
+    lastRead: LastRead?,
+    onClick: (lastRead: LastRead?) -> Unit
 ) {
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(8),
         backgroundColor = AppColor.DarkPurple,
         onClick =  {
-
+            onClick.invoke(lastRead)
         }
     ) {
         Row(

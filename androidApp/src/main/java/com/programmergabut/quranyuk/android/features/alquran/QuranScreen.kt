@@ -81,7 +81,10 @@ fun QuranScreen(
 
         LastRead(
             modifier = Modifier.padding(start = 18.dp, end = 18.dp),
-            lastRead = lastRead
+            lastRead = lastRead,
+            onClick = {
+                navController.navigate(Screen.QuranDetailScreen.route + "/${it?.surahId ?: ""}" + "/${it?.ayahId ?: ""}")
+            }
         )
 
         LazyColumn(
@@ -91,7 +94,7 @@ fun QuranScreen(
                 SurahListItem(
                     data = surahs,
                     onItemClick = {
-                        navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}" + "/${surahs.numberOfAyahs}")
+                        navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}" + "/0")
                     }
                 )
             }

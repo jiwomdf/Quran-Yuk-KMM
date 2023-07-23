@@ -10,41 +10,41 @@ import com.programmergabut.quranyuk.domain.repository.QuranRepositoryImpl
 import kotlinx.coroutines.launch
 
 interface IQuranDetailViewModel {
-    val ayahById: MutableState<ReadSurah?>
-    fun getAyahId(surahId: Int)
-    fun insertLastRead(surahId: Int, AyahId: Int, surahName:String)
+    val readSurah: MutableState<ReadSurah?>
+    fun getAyahBySurahId(surahId: Int)
+    fun insertLastRead(ayahId: Int, surahId: Int, surahName: String)
 }
 class FakeQuranDetailViewModel : IQuranDetailViewModel {
-    override val ayahById: MutableState<ReadSurah?> = mutableStateOf(null)
-    override fun getAyahId(surahId: Int) {}
-    override fun insertLastRead(surahId: Int, AyahId: Int, surahName: String) {}
+    override val readSurah: MutableState<ReadSurah?> = mutableStateOf(null)
+    override fun getAyahBySurahId(surahId: Int) {}
+    override fun insertLastRead(ayahId: Int, surahId: Int, surahName: String) {}
 }
 
 class QuranDetailViewModel(
     private val repository: QuranRepositoryImpl,
 ): IQuranDetailViewModel, ViewModel() {
-    override val ayahById: MutableState<ReadSurah?> = mutableStateOf(null)
+    override val readSurah: MutableState<ReadSurah?> = mutableStateOf(null)
 
-    override fun getAyahId(surahId : Int) {
+    override fun getAyahBySurahId(surahId : Int) {
         viewModelScope.launch {
             kotlin.runCatching {
                 repository.getReadSurah(surahId)
             }.onSuccess {
-                ayahById.value = it
+                readSurah.value = it
             }.onFailure {
 
             }
         }
     }
 
-    override fun insertLastRead(surahId: Int, ayahId: Int, surahName: String) {
+    override fun insertLastRead(ayahId: Int, surahId: Int, surahName: String) {
         viewModelScope.launch {
             kotlin.runCatching {
-                repository.insertLastRead(surahId, ayahId, surahName)
+                repository.insertLastRead(ayahId, surahId, surahName)
             }.onSuccess {
-                Log.e("rifqi", "insertLastRead: sukses nihh", )
+                Log.e("rifqi", "insertLastRead: sukses nihh")
             }.onFailure {
-
+                Log.e("rifqi", "insertLastRead: $it")
             }
         }
     }

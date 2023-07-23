@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.DismissDirection
 import androidx.compose.material.DismissValue
@@ -26,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,11 +42,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.programmergabut.quranyuk.android.MyApplicationTheme
 import com.programmergabut.quranyuk.android.R
-import com.programmergabut.quranyuk.android.Screen
-import com.programmergabut.quranyuk.android.features.alquran.components.SurahListItem
 import com.programmergabut.quranyuk.android.features.alquran.components.SwipeBackground
 import com.programmergabut.quranyuk.android.features.detailquran.components.AyahListItem
 import com.programmergabut.quranyuk.android.theme.AppColor
+import kotlinx.coroutines.launch
 
 @Preview
 @Composable
@@ -52,7 +53,7 @@ fun QuranDetailScreenPreview() {
     MyApplicationTheme {
         QuranDetailScreen(
             surahId = 1,
-            numberOfAyahs = 285,
+            ayahId = 1,
             navController = rememberNavController(),
             viewModel = FakeQuranDetailViewModel()
         )
@@ -62,17 +63,20 @@ fun QuranDetailScreenPreview() {
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun QuranDetailScreen(
-    surahId : Int,
-    numberOfAyahs: Int,
+    surahId: Int,
+    ayahId: Int = 0,
     navController: NavController,
     viewModel: IQuranDetailViewModel
 ) {
 
-    val allAyah = remember { viewModel.ayahById }
+    val allAyah = remember { viewModel.readSurah }
     val context = LocalContext.current
+    val lazyColumnListState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+
 
     LaunchedEffect(Unit) {
-        viewModel.getAyahId(surahId)
+        viewModel.getAyahBySurahId(surahId)
     }
 
     Column(
@@ -114,7 +118,7 @@ fun QuranDetailScreen(
                     Text(
                         modifier = Modifier
                             .padding(top = 2.dp),
-                        text = (allAyah.value?.englishNameTranslation ?: "") + " (${numberOfAyahs} Verse)",
+                        text = (allAyah.value?.englishNameTranslation ?: "") + " (${allAyah.value?.ayah?.size ?: 0} Verse)",
                         fontFamily = FontFamily(Font(R.font.cairo_regular)),
                         color = AppColor.White,
                         fontSize = 12.sp,
@@ -137,18 +141,24 @@ fun QuranDetailScreen(
             }
         } else {
             LazyColumn(
-                modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp)
+                modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp),
+                state = lazyColumnListState
             ) {
+                coroutineScope.launch {
+                    val scrollTo = ayahId - 1
+                    if (scrollTo >= 0) {
+                        lazyColumnListState.scrollToItem(scrollTo)
+                    }
+                }
+
                 items(
                     items = allAyah.value?.ayah ?: emptyList(),
                     key = { it.number},
                     itemContent = { ayahs ->
-                        val currentItem by rememberUpdatedState(ayahs)
                         val dismissState = rememberDismissState(
                             confirmStateChange = {
                                 if (it == DismissValue.DismissedToStart || it == DismissValue.DismissedToEnd) {
-
-                                viewModel.insertLastRead(surahId,ayahs.number, allAyah.value?.englishName ?: "")
+                                    viewModel.insertLastRead(ayahs.numberInSurah, surahId, allAyah.value?.englishName ?: "")
                                     Toast.makeText(context, "success bookmark", Toast.LENGTH_SHORT).show()
                                     false
                                 } else false
