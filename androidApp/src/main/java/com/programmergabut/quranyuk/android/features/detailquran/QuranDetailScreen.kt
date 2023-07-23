@@ -1,5 +1,7 @@
 package com.programmergabut.quranyuk.android.features.detailquran
 
+import android.widget.Toast
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -13,12 +15,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.DismissDirection
+import androidx.compose.material.DismissValue
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.FractionalThreshold
+import androidx.compose.material.SwipeToDismiss
 import androidx.compose.material.Text
+import androidx.compose.material.rememberDismissState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -31,6 +42,7 @@ import com.programmergabut.quranyuk.android.MyApplicationTheme
 import com.programmergabut.quranyuk.android.R
 import com.programmergabut.quranyuk.android.Screen
 import com.programmergabut.quranyuk.android.features.alquran.components.SurahListItem
+import com.programmergabut.quranyuk.android.features.alquran.components.SwipeBackground
 import com.programmergabut.quranyuk.android.features.detailquran.components.AyahListItem
 import com.programmergabut.quranyuk.android.theme.AppColor
 
@@ -47,6 +59,7 @@ fun QuranDetailScreenPreview() {
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun QuranDetailScreen(
     surahId : Int,
@@ -56,6 +69,7 @@ fun QuranDetailScreen(
 ) {
 
     val allAyah = remember { viewModel.ayahById }
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         viewModel.getAyahId(surahId)
@@ -127,12 +141,44 @@ fun QuranDetailScreen(
             ) {
                 items(
                     items = allAyah.value?.ayah ?: emptyList(),
-                    key = { it.number}
-                ) { ayahs ->
-                    AyahListItem(
-                        data = ayahs,
-                    )
-                }
+                    key = { it.number},
+                    itemContent = { ayahs ->
+                        val currentItem by rememberUpdatedState(ayahs)
+                        val dismissState = rememberDismissState(
+                            confirmStateChange = {
+                                if (it == DismissValue.DismissedToStart || it == DismissValue.DismissedToEnd) {
+
+                                viewModel.insertLastRead(surahId,ayahs.number, allAyah.value?.englishName ?: "")
+                                    Toast.makeText(context, "success bookmark", Toast.LENGTH_SHORT).show()
+                                    false
+                                } else false
+                            }
+                        )
+
+
+                        SwipeToDismiss(
+                            state = dismissState,
+                            modifier = Modifier
+                                .animateItemPlacement(),
+                            directions = setOf(
+                                DismissDirection.EndToStart
+                            ),
+                            dismissThresholds = {
+                                FractionalThreshold(
+                                    0f
+                                )
+                            },
+                            background = {
+                                SwipeBackground(dismissState)
+                            },
+                            dismissContent = {
+                                AyahListItem(
+                                    data = ayahs,
+                                )
+                            }
+                        )
+                    }
+                )
             }
         }
     }
