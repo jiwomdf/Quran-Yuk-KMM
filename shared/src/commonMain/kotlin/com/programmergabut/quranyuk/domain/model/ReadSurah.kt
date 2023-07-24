@@ -21,13 +21,13 @@ data class ReadSurah(
 
     companion object {
         fun mapReadSurahEn(response: ReadSurahCombinedResponse?): ReadSurah? {
-            return response?.let { ayah ->
+            return response?.let { readSurah ->
                 ReadSurah(
-                    number = ayah.number ?: 0,
-                    name = ayah.name ?: "",
-                    englishName = ayah.englishName ?: "",
-                    englishNameTranslation = ayah.englishNameTranslation ?: "",
-                    ayah = ayah.ayahCombined?.map {
+                    number = readSurah.number ?: 0,
+                    name = readSurah.name ?: "",
+                    englishName = readSurah.englishName ?: "",
+                    englishNameTranslation = readSurah.englishNameTranslation ?: "",
+                    ayah = readSurah.ayahCombined?.map {
                         Ayah(
                             number = it?.number ?: 0,
                             text = it?.text ?: "",

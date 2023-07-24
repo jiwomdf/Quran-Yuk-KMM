@@ -23,7 +23,7 @@ interface IQuranViewModel {
 class FakeQuranViewModel : IQuranViewModel {
     override val allSurah = emptyList<Surah>()
     override val tempSearch = mutableStateListOf<Surah>()
-    override val lastRead: MutableState<LastRead?>  = mutableStateOf(LastRead(1,2, "Test"))
+    override val lastRead: MutableState<LastRead?> = mutableStateOf(LastRead(1,2, "Test"))
     override fun getAllSurah() {}
     override fun searchSurah(query: String) {}
     override fun getLastRead() {}

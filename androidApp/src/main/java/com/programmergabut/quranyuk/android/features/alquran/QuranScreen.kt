@@ -83,7 +83,7 @@ fun QuranScreen(
             modifier = Modifier.padding(start = 18.dp, end = 18.dp),
             lastRead = lastRead,
             onClick = {
-                navController.navigate(Screen.QuranDetailScreen.route + "/${it?.surahId ?: ""}" + "/${it?.ayahId ?: ""}")
+                navController.navigate(Screen.QuranDetailScreen.route + "/${it?.surahId ?: ""}")
             }
         )
 
@@ -94,7 +94,7 @@ fun QuranScreen(
                 SurahListItem(
                     data = surahs,
                     onItemClick = {
-                        navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}" + "/0")
+                        navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}")
                     }
                 )
             }

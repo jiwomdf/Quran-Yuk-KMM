@@ -50,25 +50,20 @@ class MainActivity : ComponentActivity() {
                         }
                         with(QuranDetailScreen){
                             composable(
-                                route = Screen.QuranDetailScreen.route + "/{$surahId}" + "/{$ayahId}",
+                                route = Screen.QuranDetailScreen.route + "/{$surahId}",
                                 arguments = listOf(
                                     navArgument(surahId) {
-                                        type = NavType.IntType
-                                        defaultValue = 0
-                                    },
-                                    navArgument(ayahId) {
                                         type = NavType.IntType
                                         defaultValue = 0
                                     }
                                 )
                             ) {
                                 val surahId = it.arguments?.getInt(surahId, 0) ?: 0
-                                val ayahId = it.arguments?.getInt(ayahId, 0) ?: 0
                                 val remote = RemoteDataSourceImpl(QuranApi())
                                 val driver = DatabaseDriverFactory(applicationContext).createDriver()
                                 val local = SqlDelightQuranDataSource(QuranDatabase(driver))
                                 val viewModel = QuranDetailViewModel(QuranRepositoryImpl(remote, local))
-                                QuranDetailScreen(surahId, ayahId, navController, viewModel)
+                                QuranDetailScreen(surahId, navController, viewModel)
                             }
                         }
                     }
