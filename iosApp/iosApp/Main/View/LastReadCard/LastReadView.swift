@@ -10,11 +10,9 @@ import UIKit
 
 class LastReadView: UIView {
 
-    
     @IBOutlet weak var lastReadSurahNameLabel: UILabel!
     @IBOutlet weak var lastReadDetailLabel: UILabel!
     
-    //MARK:
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -27,7 +25,6 @@ class LastReadView: UIView {
         loadViewFromNib()
     }
     
-    //MARK:
     private func loadViewFromNib() {
         let bundle = Bundle.init(for: LastReadView.self)
         if let viewToAdd = bundle.loadNibNamed("LastReadView", owner: self, options: nil), let

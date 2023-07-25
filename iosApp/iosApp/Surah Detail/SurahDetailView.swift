@@ -9,12 +9,17 @@
 import SwiftUI
 import shared
 
+let EMPTY_LAST_READ_AYAH_ID: Int32 = -100
+
 struct SurahDetailView: View {
     
     var fakeData: [ReadSurah.Ayah]? = nil
     var surahId: Int32? = nil
+    var ayahId: Int32? = nil
+    @State private var lastRead: LastRead? = nil
     @StateObject var viewModel = SurahDetailViewModel(quranRepository: nil)
-        
+    @State private var showAlert = false
+
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
@@ -22,8 +27,32 @@ struct SurahDetailView: View {
             ZStack {
                 VStack {
                     TopNavigationBar(presentation: presentation, surah: viewModel.surah)
-                    ListAyah(listAyah: fakeData ?? viewModel.surah?.ayah ?? [])
+                    if(fakeData == nil && viewModel.surah?.ayah == nil) {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    } else {
+                        let list = fakeData ?? viewModel.surah?.ayah ?? []
+                        ListAyah(
+                            listAyah: list,
+                            ayahId: self.ayahId ?? EMPTY_LAST_READ_AYAH_ID,
+                            onSaveLastRead: { ayah in
+                                self.lastRead = LastRead(
+                                    ayahId: ayah.numberInSurah,
+                                    surahId: surahId ?? 0,
+                                    surahName: viewModel.surah?.englishName ?? ""
+                                )
+                                viewModel.insertLastRead(lastRead: self.lastRead!)
+                                showAlert.toggle()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                                    showAlert.toggle()
+                                }
+                            }
+                        )
                         .padding(.top, 16)
+                        
+                        SnackBar(message: "Last Read is \(String(lastRead?.surahId ?? 0)):\(String(lastRead?.ayahId ?? 0))", isVisible: showAlert)
+                    }
                 }
             }
         }.onAppear {
@@ -36,7 +65,6 @@ struct SurahDetailView: View {
             }
         }
         .environment(\.colorScheme, .dark)
-
     }
 }
 
@@ -45,7 +73,6 @@ struct TopNavigationBar: View {
     var surah: ReadSurah? = nil
     
     var body: some View {
-
         HStack {
             Button(action: {
                 self.presentation?.wrappedValue.dismiss()
@@ -59,7 +86,6 @@ struct TopNavigationBar: View {
                     .padding(.leading, 20)
                     .foregroundColor(.white)
             }
-            
             VStack(alignment: .leading) {
                 Text(surah?.englishName ?? "")
                     .foregroundColor(.white)
@@ -74,35 +100,80 @@ struct TopNavigationBar: View {
 
 struct ListAyah: View {
     let listAyah: [ReadSurah.Ayah]
-
+    let ayahId: Int32
+    let onSaveLastRead: (ReadSurah.Ayah) -> ()
+    
     var body: some View {
-        List {
-            ForEach(listAyah, id: \.self.number){ ayah in
-                VStack(alignment: .leading){
-                    HStack(alignment: .top) {
-                        ZStack {
-                            Text(String(ayah.numberInSurah))
-                                .zIndex(1)
-                                .foregroundColor(.white)
-                                .font(.custom("Cairo", size: 12))
-                            Image("surah_star")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 50)
+        ScrollViewReader { scrollView in
+            ScrollView(.vertical) {
+                LazyVStack {
+                    ForEach(listAyah, id: \.self.number){ ayah in
+                        VStack(alignment: .leading){
+                            HStack(alignment: .top) {
+                                ZStack {
+                                    Text(String(ayah.numberInSurah))
+                                        .zIndex(1)
+                                        .foregroundColor(.white)
+                                        .font(.custom("Cairo", size: 12))
+                                    Image("surah_star")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 50)
+                                }
+                                .padding(.trailing, 16)
+                                Spacer()
+                                Text(ayah.text)
+                                    .font(.custom("Amiri", size: 26))
+                                    .foregroundColor(.white)
+                            }
+                            .padding(.bottom, 8)
+                            .padding(.top, 8)
+                            
+                            Text(ayah.textEn)
+                                .lineSpacing(8)
+                                .foregroundColor(Color("Purple"))
+                                .font(.system(size: 15))
                         }
-                        .padding(.trailing, 16)
-                        Spacer()
-                        Text(ayah.text)
-                            .font(.custom("Amiri", size: 26))
-                            .foregroundColor(.white)
-                    }.padding(.bottom, 8)
-                    Text(ayah.textEn)
-                        .lineSpacing(8)
-                        .foregroundColor(Color("Purple"))
-                        .font(.system(size: 15))
+                        .onTapGesture(count: 2) {
+                            onSaveLastRead(ayah)
+                        }
+                        .id(ayah.numberInSurah)
+                    }
+                    .listRowBackground(Color.black)
+                }.onAppear {
+                    if(ayahId != EMPTY_LAST_READ_AYAH_ID) {
+                        scrollView.scrollTo(ayahId)
+                    }
                 }
             }
-            .listRowBackground(Color.black)
+        }
+        .padding(.leading, 20)
+        .padding(.trailing, 20)
+    }
+}
+
+struct SnackBar: View {
+    let message: String
+    let isVisible: Bool
+    var body: some View {
+        if isVisible {
+            ZStack {
+                VStack{
+                    HStack {
+                        Text(message)
+                            .font(.footnote)
+                            .foregroundColor(.black)
+                            .padding(.leading, 10)
+                        Spacer ()
+                    }
+                    .frame(height: 40)
+                    .background(Color.white)
+                    .cornerRadius(5)
+                    .shadow(radius: 5)
+                    .padding(.leading, 10)
+                    .padding(.trailing, 10)
+                }
+            }
         }
     }
 }

@@ -42,8 +42,6 @@ import shared
                 let result = try await quranRepository?.getLastRead() ?? nil
                 didSucceedGetLastRead?(result)
             } catch let ex {
-                //TODO: jiwo
-                print(ex)
                 didFailedGetLastRead?(ex.localizedDescription)
             }
         }

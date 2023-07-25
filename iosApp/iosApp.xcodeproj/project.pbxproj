@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0412ABA92A65A53700B39040 /* ListIndexed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412ABA82A65A53700B39040 /* ListIndexed.swift */; };
 		041D09A12A6D0AEA0024461F /* LastReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D09A02A6D0AEA0024461F /* LastReadView.swift */; };
 		04671EFD2A584911006876C1 /* MainQuranViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04671EFC2A584911006876C1 /* MainQuranViewModel.swift */; };
 		0477D13F2A55007F008EF996 /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477D13E2A55007F008EF996 /* Constans.swift */; };
 		047D26202A6AE674008D5793 /* LastReadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 047D261F2A6AE674008D5793 /* LastReadView.xib */; };
-		047D26252A6AEA1A008D5793 /* ViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D26242A6AEA1A008D5793 /* ViewUtil.swift */; };
 		04A87E6E2A53B67200104D43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A87E6D2A53B67200104D43 /* Main.storyboard */; };
 		04BF2ADC2A617BE000ED5B76 /* SurahDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF2ADB2A617BE000ED5B76 /* SurahDetailView.swift */; };
 		04D460C72A5319B9009FE872 /* Cairo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D460C32A531985009FE872 /* Cairo-Black.ttf */; };
@@ -52,12 +50,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0412ABA82A65A53700B39040 /* ListIndexed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIndexed.swift; sourceTree = "<group>"; };
 		041D09A02A6D0AEA0024461F /* LastReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastReadView.swift; sourceTree = "<group>"; };
 		04671EFC2A584911006876C1 /* MainQuranViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQuranViewModel.swift; sourceTree = "<group>"; };
 		0477D13E2A55007F008EF996 /* Constans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
 		047D261F2A6AE674008D5793 /* LastReadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastReadView.xib; sourceTree = "<group>"; };
-		047D26242A6AEA1A008D5793 /* ViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtil.swift; sourceTree = "<group>"; };
 		04A87E6D2A53B67200104D43 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		04BF2ADB2A617BE000ED5B76 /* SurahDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurahDetailView.swift; sourceTree = "<group>"; };
 		04D460BE2A531985009FE872 /* Cairo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Regular.ttf"; sourceTree = "<group>"; };
@@ -99,15 +95,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0412ABA72A65A52100B39040 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				0412ABA82A65A53700B39040 /* ListIndexed.swift */,
-				047D26242A6AEA1A008D5793 /* ViewUtil.swift */,
-			);
-			path = Util;
-			sourceTree = "<group>";
-		};
 		04BF2ADA2A617BC300ED5B76 /* Surah Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,7 +230,6 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				0412ABA72A65A52100B39040 /* Util */,
 				04F01ED42A5ECD2A0031DEA0 /* CustomView */,
 				04D460CF2A53269A009FE872 /* Views */,
 				04D460BD2A53197D009FE872 /* Fonts */,
@@ -408,13 +394,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0412ABA92A65A53700B39040 /* ListIndexed.swift in Sources */,
 				04F01ED62A5ECD3C0031DEA0 /* SearchTextField.swift in Sources */,
 				04FEBC512A6AE3F90088BDDE /* SurahTableViewCell.swift in Sources */,
 				04E4D0552A544FF500D64774 /* SceneDelegate.swift in Sources */,
 				04E4D0532A544FC800D64774 /* AppDelegate.swift in Sources */,
 				04671EFD2A584911006876C1 /* MainQuranViewModel.swift in Sources */,
-				047D26252A6AEA1A008D5793 /* ViewUtil.swift in Sources */,
 				04BF2ADC2A617BE000ED5B76 /* SurahDetailView.swift in Sources */,
 				0477D13F2A55007F008EF996 /* Constans.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,

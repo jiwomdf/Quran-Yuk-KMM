@@ -28,15 +28,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WdZ-6v-T2f" userLabel="Card View" customClass="LastReadView" customModule="iosApp" customModuleProvider="target">
-                                <rect key="frame" x="20" y="261.33333333333331" width="353" height="100"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="eNX-t4-ni9"/>
-                                </constraints>
-                            </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="dfF-wz-i2D" userLabel="SpinnerLoading">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Al-Qur’an" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3N-X3-LSr">
+                                <rect key="frame" x="20" y="135" width="116" height="52.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="28"/>
+                                <color key="textColor" red="0.52941179279999995" green="0.52941179279999995" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search surah" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="kVm-nP-Kq4" userLabel="SearchSurahTextField" customClass="SearchTextField" customModule="iosApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="203.66666666666666" width="353" height="40"/>
+                                <color key="backgroundColor" red="0.050980389119999997" green="0.050980389119999997" blue="0.074509806930000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.52941179279999995" green="0.52941179279999995" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                        <color key="value" systemColor="systemGrayColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="seatchEditingChanged:" destination="01J-lp-oVM" eventType="editingChanged" id="W5S-tz-ttQ"/>
+                                </connections>
+                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3Ij-7G-SJk">
-                                <rect key="frame" x="20" y="371.33333333333326" width="353" height="446.66666666666674"/>
+                                <rect key="frame" x="20" y="363.66666666666674" width="353" height="454.33333333333326"/>
                                 <color key="backgroundColor" red="0.050980389119999997" green="0.050980389119999997" blue="0.074509806930000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SurahCell" rowHeight="80" id="snK-yX-ixQ" customClass="SurahTableViewCell" customModule="iosApp" customModuleProvider="target">
@@ -124,43 +150,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search surah" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="kVm-nP-Kq4" userLabel="SearchSurahTextField" customClass="SearchTextField" customModule="iosApp" customModuleProvider="target">
-                                <rect key="frame" x="20" y="203.66666666666666" width="353" height="47.666666666666657"/>
-                                <color key="backgroundColor" red="0.050980389119999997" green="0.050980389119999997" blue="0.074509806930000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.52941179279999995" green="0.52941179279999995" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="16"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                        <color key="value" systemColor="systemGrayColor"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="seatchEditingChanged:" destination="01J-lp-oVM" eventType="editingChanged" id="W5S-tz-ttQ"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Al-Qur’an" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3N-X3-LSr">
-                                <rect key="frame" x="20" y="135" width="116" height="52.666666666666657"/>
-                                <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="28"/>
-                                <color key="textColor" red="0.52941179279999995" green="0.52941179279999995" blue="0.90588235859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-4k-mgU" userLabel="LastRead">
-                                <rect key="frame" x="20" y="261.33333333333331" width="353" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WdZ-6v-T2f" userLabel="Card View" customClass="LastReadView" customModule="iosApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="253.66666666666663" width="353" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="eNX-t4-ni9"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-4k-mgU" userLabel="LastRead">
+                                <rect key="frame" x="20" y="253.66666666666663" width="353" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="EbI-hu-QLt"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <attributedString key="attributedTitle"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="onLastReadDidTap:" destination="01J-lp-oVM" eventType="touchUpInside" id="7Y6-gx-kCe"/>
                                 </connections>
@@ -171,6 +175,7 @@
                         <constraints>
                             <constraint firstItem="bBV-4k-mgU" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" id="3oo-vj-gJE"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="bBV-4k-mgU" secondAttribute="trailing" constant="20" id="8XU-jD-Rjl"/>
+                            <constraint firstItem="dfF-wz-i2D" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="B49-3a-jJ7"/>
                             <constraint firstItem="b3N-X3-LSr" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" id="Efw-RW-ISd"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="WdZ-6v-T2f" secondAttribute="trailing" constant="20" id="K3O-fa-bWn"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="3Ij-7G-SJk" secondAttribute="trailing" constant="20" id="MoX-0B-aq7"/>
@@ -180,15 +185,20 @@
                             <constraint firstItem="WdZ-6v-T2f" firstAttribute="top" secondItem="kVm-nP-Kq4" secondAttribute="bottom" constant="10" id="YAt-fE-csY"/>
                             <constraint firstItem="b3N-X3-LSr" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="32" id="ddN-t0-FaY"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="3Ij-7G-SJk" secondAttribute="bottom" id="ehR-Z1-mWV"/>
+                            <constraint firstItem="dfF-wz-i2D" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="hKx-G4-JPg"/>
                             <constraint firstItem="kVm-nP-Kq4" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" id="i7n-Ak-e5V"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="kVm-nP-Kq4" secondAttribute="trailing" constant="20" id="mYS-Jg-h3y"/>
                             <constraint firstItem="bBV-4k-mgU" firstAttribute="top" secondItem="WdZ-6v-T2f" secondAttribute="top" id="oO1-vZ-p72"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="dfF-wz-i2D" secondAttribute="bottom" id="ohE-1h-lw4"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="dfF-wz-i2D" secondAttribute="trailing" id="xzl-6y-rc6"/>
                             <constraint firstItem="3Ij-7G-SJk" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" id="zJU-9z-nQK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="H9q-8W-TQ6"/>
                     <connections>
+                        <outlet property="lastReadButton" destination="bBV-4k-mgU" id="ovp-cg-rPv"/>
                         <outlet property="lastReadCard" destination="WdZ-6v-T2f" id="1Hf-Pr-BjC"/>
+                        <outlet property="spinnerLoading" destination="dfF-wz-i2D" id="QPr-5M-HS0"/>
                         <outlet property="tableView" destination="3Ij-7G-SJk" id="ev7-T6-eVC"/>
                     </connections>
                 </viewController>
@@ -217,7 +227,7 @@
     </scenes>
     <designables>
         <designable name="kVm-nP-Kq4">
-            <size key="intrinsicContentSize" width="121.66666666666667" height="47.666666666666664"/>
+            <size key="intrinsicContentSize" width="115.66666666666667" height="40"/>
         </designable>
     </designables>
     <resources>

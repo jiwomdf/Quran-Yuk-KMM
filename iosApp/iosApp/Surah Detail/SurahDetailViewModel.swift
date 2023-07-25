@@ -33,6 +33,20 @@ extension SurahDetailView {
             }
         }
         
+        func insertLastRead(lastRead: LastRead) {
+            Task {
+                do {
+                    try await quranRepository?.insertLastRead(
+                        ayahId: lastRead.ayahId,
+                        surahId: lastRead.surahId,
+                        surahName: lastRead.surahName
+                    ) ?? nil
+                } catch let ex {
+                    self.surah = nil
+                }
+            }
+        }
+        
     }
 
 }

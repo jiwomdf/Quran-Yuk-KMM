@@ -14,11 +14,14 @@ import SwiftUI
 
 final class MainQuranViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var listSurah: [Surah]? = nil
+    private var listSurah: [Surah]? = nil
     private lazy var lastReadView = { LastReadView() }()
+    private var lastRead: LastRead? = nil
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lastReadCard: UIView!
+    @IBOutlet weak var lastReadButton: UIButton!
+    @IBOutlet weak var spinnerLoading: UIActivityIndicatorView!
     
     private lazy var viewModel: MainQuranViewModel = {
         let remote = RemoteDataSourceImpl(quranApi: QuranApi())
@@ -37,8 +40,13 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
     }
     
     @IBAction func onLastReadDidTap(_ sender: UIButton) {
-        let displayView = UIHostingController(rootView: SurahDetailView(surahId: 1))
-
+        if(lastRead?.ayahId == nil) {
+            let message = MDCSnackbarMessage(text: "You dont have any last read")
+            MDCSnackbarManager.default.show(message)
+            return
+        }
+        
+        let displayView = UIHostingController(rootView: SurahDetailView(surahId: lastRead?.surahId, ayahId: lastRead?.ayahId))
         self.navigationController?.pushViewController(displayView, animated: true)
     }
    
@@ -46,34 +54,55 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
         self.navigationController?.navigationBar.isHidden = true
         tableView.dataSource = self
         tableView.delegate = self
+        
+        showIndicator(isHidden: false)
         viewModel.getAllSurah()
-        viewModel.getLastRead()
         
         lastReadCard.layer.cornerRadius = 8
         lastReadCard.layer.masksToBounds = true
         lastReadCard.addSubview(lastReadView)
+        
+        lastReadButton.setTitle("", for: .normal)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        viewModel.getLastRead()
     }
     
     private func reloadViews(data: [Surah]?) {
+        showIndicator(isHidden: true)
         listSurah = data
         tableView.reloadData()
     }
     
     private func getLastRead(lastRead: LastRead?) {
-        let displayView = UIHostingController(rootView: SurahDetailView(surahId: lastRead?.surahId))
-        self.navigationController?.pushViewController(displayView, animated: true)
+        self.lastRead = lastRead
+        let surahId = String(lastRead?.surahId ?? 0)
+        let ayahId = String(lastRead?.ayahId ?? 0)
+        
+        lastReadView.lastReadSurahNameLabel.text = lastRead?.surahName ?? ""
+        lastReadView.lastReadDetailLabel.text = "\(surahId):\(ayahId)"
     }
     
     private func showEmptyLastRead(errMsg: String) {
         lastReadView.lastReadSurahNameLabel.text = "You’ve not read yet"
-        lastReadView.lastReadDetailLabel.text = ""
+        lastReadView.lastReadDetailLabel.text = "Press on ayah twice to save last read"
     }
     
     private func showErrorMessage(error: String) {
+        showIndicator(isHidden: true)
         let message = MDCSnackbarMessage(text: "Something went wrong")
         MDCSnackbarManager.default.show(message)
     }
     
+    private func showIndicator(isHidden: Bool) {
+        spinnerLoading.isHidden = isHidden
+        if(isHidden) {
+            spinnerLoading.stopAnimating()
+        } else {
+            spinnerLoading.startAnimating()
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listSurah?.count ?? 0
@@ -90,8 +119,8 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let surah = Int32(listSurah?[indexPath.row].number ?? 0)
-        let displayView = UIHostingController(rootView: SurahDetailView(surahId: surah))
+        let surahId = Int32(listSurah?[indexPath.row].number ?? 0)
+        let displayView = UIHostingController(rootView: SurahDetailView(surahId: surahId))
 
         self.navigationController?.pushViewController(displayView, animated: true)
     }

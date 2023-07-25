@@ -12,7 +12,6 @@ import shared
 
 class SurahTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak var surahNumberLabel: UILabel!
     @IBOutlet weak var surahNameLabel: UILabel!
     @IBOutlet weak var surahDscLabel: UILabel!
