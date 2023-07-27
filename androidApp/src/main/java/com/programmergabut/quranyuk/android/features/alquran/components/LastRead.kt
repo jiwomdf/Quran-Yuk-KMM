@@ -77,17 +77,16 @@ fun LastRead(
                     fontSize = 14.sp,
                     style = TextStyle(fontWeight = FontWeight.Bold)
                 )
-                lastRead?.let {
-                    Text(
-                        modifier = Modifier.padding(top = 2.dp),
-                        text = "${lastRead.surahId}:${lastRead.ayahId}",
-                        color = AppColor.White,
-                        fontSize = 12.sp
-                    )
-                } ?: kotlin.run {
-                    Spacer(modifier = Modifier.height(18.dp))
-                }
-
+                Text(
+                    modifier = Modifier.padding(top = 2.dp),
+                    text = if(lastRead != null){
+                        "${lastRead.surahId}:${lastRead.ayahId}"
+                    } else {
+                        "Swipe left on ayah to save last read"
+                    },
+                    color = AppColor.White,
+                    fontSize = 12.sp
+                )
                 Text(
                     modifier = Modifier.padding(top = 6.dp),
                     text = "Last Read",
