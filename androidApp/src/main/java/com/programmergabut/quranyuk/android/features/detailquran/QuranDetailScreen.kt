@@ -1,6 +1,5 @@
 package com.programmergabut.quranyuk.android.features.detailquran
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -78,6 +77,7 @@ fun QuranDetailScreen(
 
     LaunchedEffect(Unit) {
         viewModel.getLastRead()
+        viewModel.getAyahBySurahId(surahId)
     }
 
     LaunchedEffect(insertLastRead) {
@@ -87,7 +87,7 @@ fun QuranDetailScreen(
     LaunchedEffect(lastRead) {
         ayahId = lastRead?.ayahId ?: 0
         isLastReadSurah = surahId == (lastRead?.surahId ?: 0)
-        viewModel.getAyahBySurahId(surahId)
+        readSurah.value?.let { viewModel.updateAyahs(it) }
     }
 
     Column(

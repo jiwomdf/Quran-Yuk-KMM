@@ -19,15 +19,19 @@ interface IQuranDetailViewModel {
     val insertLastRead: MutableState<Int>
     val lastRead: MutableState<LastRead?>
     fun getAyahBySurahId(surahId: Int)
+
+    fun updateAyahs(data: ReadSurah)
     fun insertLastRead(ayahId: Int, surahId: Int, surahName: String)
     fun getLastRead()
 }
 class FakeQuranDetailViewModel : IQuranDetailViewModel {
     override val readSurah: MutableState<ReadSurah?> = mutableStateOf(null)
-    override val insertLastRead: MutableState<Int> = mutableStateOf(0)
+    override val insertLastRead: MutableState<Int> = mutableIntStateOf(0)
     override val lastRead: MutableState<LastRead?> = mutableStateOf(LastRead(1,2, "Test"))
 
     override fun getAyahBySurahId(surahId: Int) {}
+    override fun updateAyahs(data: ReadSurah) {}
+
     override fun insertLastRead(ayahId: Int, surahId: Int, surahName: String) {}
     override fun getLastRead() {}
 }
@@ -36,7 +40,7 @@ class QuranDetailViewModel(
     private val repository: QuranRepositoryImpl,
 ): IQuranDetailViewModel, ViewModel() {
     override val readSurah: MutableState<ReadSurah?> = mutableStateOf(null)
-    override val insertLastRead: MutableState<Int> = mutableStateOf(0)
+    override val insertLastRead: MutableState<Int> = mutableIntStateOf(0)
     override val lastRead: MutableState<LastRead?> = mutableStateOf(null)
 
     override fun getAyahBySurahId(surahId : Int) {
@@ -45,9 +49,13 @@ class QuranDetailViewModel(
                 repository.getReadSurah(surahId)
             }.onSuccess {
                 readSurah.value = it
-            }.onFailure {
+            }.onFailure {}
+        }
+    }
 
-            }
+    override fun updateAyahs(data: ReadSurah) {
+        viewModelScope.launch {
+            readSurah.value = readSurah.value?.copy()
         }
     }
 
@@ -67,8 +75,7 @@ class QuranDetailViewModel(
                 repository.getLastRead()
             }.onSuccess {
                 lastRead.value = it
-            }.onFailure {
-            }
+            }.onFailure {}
         }
     }
 }

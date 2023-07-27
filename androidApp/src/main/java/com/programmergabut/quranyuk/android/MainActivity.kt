@@ -39,14 +39,13 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         startDestination = Screen.QuranScreen.route
                     ) {
-                        composable(
-                            route = Screen.QuranScreen.route
-                        ) {
-                            val remote = RemoteDataSourceImpl(QuranApi())
-                            val driver = DatabaseDriverFactory(applicationContext).createDriver()
-                            val local = SqlDelightQuranDataSource(QuranDatabase(driver))
-                            val viewModel = QuranViewModel(QuranRepositoryImpl(remote, local))
-                            QuranScreen(navController, viewModel)
+                        val remote = RemoteDataSourceImpl(QuranApi())
+                        val driver = DatabaseDriverFactory(applicationContext).createDriver()
+                        val local = SqlDelightQuranDataSource(QuranDatabase(driver))
+                        val quranViewModel = QuranViewModel(QuranRepositoryImpl(remote, local))
+                        val quranDetailViewModel = QuranDetailViewModel(QuranRepositoryImpl(remote, local))
+                        composable(route = Screen.QuranScreen.route) {
+                            QuranScreen(navController, quranViewModel)
                         }
                         with(QuranDetailScreen){
                             composable(
@@ -59,11 +58,7 @@ class MainActivity : ComponentActivity() {
                                 )
                             ) {
                                 val surahId = it.arguments?.getInt(surahId, 0) ?: 0
-                                val remote = RemoteDataSourceImpl(QuranApi())
-                                val driver = DatabaseDriverFactory(applicationContext).createDriver()
-                                val local = SqlDelightQuranDataSource(QuranDatabase(driver))
-                                val viewModel = QuranDetailViewModel(QuranRepositoryImpl(remote, local))
-                                QuranDetailScreen(surahId, navController, viewModel)
+                                QuranDetailScreen(surahId, navController, quranDetailViewModel)
                             }
                         }
                     }

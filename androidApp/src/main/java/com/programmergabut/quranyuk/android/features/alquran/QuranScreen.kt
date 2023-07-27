@@ -11,9 +11,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -29,6 +31,7 @@ import com.programmergabut.quranyuk.android.features.alquran.components.CustomSe
 import com.programmergabut.quranyuk.android.features.alquran.components.LastRead
 import com.programmergabut.quranyuk.android.features.alquran.components.SurahListItem
 import com.programmergabut.quranyuk.android.theme.AppColor
+import com.programmergabut.quranyuk.domain.model.Surah
 
 @Preview
 @Composable
@@ -47,13 +50,19 @@ fun QuranScreen(
     viewModel: IQuranViewModel
 ) {
 
-    val allSurah = remember { viewModel.tempSearch }
+    val allSurah = remember { mutableStateListOf<Surah>() }
+    val tempSurah by  viewModel.tempSearch
     val lastRead by remember { viewModel.lastRead }
     var searchText by remember { mutableStateOf("") }
 
     LaunchedEffect(Unit) {
         viewModel.getAllSurah()
         viewModel.getLastRead()
+    }
+
+    LaunchedEffect(tempSurah) {
+        allSurah.clear()
+        allSurah.addAll(tempSurah.toMutableStateList())
     }
 
     Column(

@@ -1,9 +1,7 @@
 package com.programmergabut.quranyuk.android.features.alquran
 
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.programmergabut.quranyuk.domain.model.LastRead
@@ -13,16 +11,14 @@ import kotlinx.coroutines.launch
 
 
 interface IQuranViewModel {
-    val allSurah: List<Surah>
-    val tempSearch: SnapshotStateList<Surah>
+    val tempSearch: MutableState<List<Surah>>
     val lastRead: MutableState<LastRead?>
     fun getAllSurah()
     fun searchSurah(query: String)
     fun getLastRead()
 }
 class FakeQuranViewModel : IQuranViewModel {
-    override val allSurah = emptyList<Surah>()
-    override val tempSearch = mutableStateListOf<Surah>()
+    override val tempSearch = mutableStateOf<List<Surah>>(emptyList())
     override val lastRead: MutableState<LastRead?> = mutableStateOf(LastRead(1,2, "Test"))
     override fun getAllSurah() {}
     override fun searchSurah(query: String) {}
@@ -32,8 +28,8 @@ class FakeQuranViewModel : IQuranViewModel {
 class QuranViewModel(
     private val repository: QuranRepositoryImpl
 ): IQuranViewModel, ViewModel() {
-    override var allSurah = emptyList<Surah>()
-    override val tempSearch = mutableStateListOf<Surah>()
+    private var allSurah = emptyList<Surah>()
+    override var tempSearch = mutableStateOf<List<Surah>>(emptyList())
     override var lastRead = mutableStateOf<LastRead?>(null)
 
     override fun getAllSurah() {
@@ -42,24 +38,22 @@ class QuranViewModel(
                 repository.getAllSurah()
             }.onSuccess {
                 allSurah = it
-                tempSearch.addAll(allSurah)
-            }.onFailure {
-
-            }
+                tempSearch.value = it
+            }.onFailure {}
         }
     }
 
     override fun searchSurah(query: String) {
-        tempSearch.clear()
-        if(query.isEmpty()) {
-            tempSearch.addAll(allSurah)
+        val result = if(query.isEmpty()) {
+            allSurah
         } else {
-            tempSearch.addAll(allSurah.filter {
+            allSurah.filter {
                 val formattedText = query.lowercase().replace("-", " ")
                 val formattedName = it.englishName.lowercase().replace("-", " ")
                 formattedName.contains(formattedText, true)
-            })
+            }
         }
+        tempSearch.value = result
     }
 
     override fun getLastRead() {
@@ -68,9 +62,7 @@ class QuranViewModel(
                 repository.getLastRead()
             }.onSuccess {
                 lastRead.value = it
-            }.onFailure {
-
-            }
+            }.onFailure {}
         }
     }
 
