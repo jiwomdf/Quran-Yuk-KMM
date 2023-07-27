@@ -44,6 +44,7 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation("org.mockito:mockito-core:4.2.0")
             }
         }
         val androidMain by getting {
