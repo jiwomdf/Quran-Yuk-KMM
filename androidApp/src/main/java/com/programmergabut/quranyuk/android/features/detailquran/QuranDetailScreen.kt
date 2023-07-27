@@ -45,6 +45,7 @@ import androidx.navigation.compose.rememberNavController
 import com.programmergabut.quranyuk.android.MyApplicationTheme
 import com.programmergabut.quranyuk.android.R
 import com.programmergabut.quranyuk.android.features.alquran.components.SwipeBackground
+import com.programmergabut.quranyuk.android.features.common.component.Loading
 import com.programmergabut.quranyuk.android.features.detailquran.components.AyahListItem
 import com.programmergabut.quranyuk.android.theme.AppColor
 import com.programmergabut.quranyuk.domain.model.ReadSurah
@@ -220,15 +221,5 @@ fun ListAyah(
                 )
             }
         )
-    }
-}
-
-@Composable
-fun Loading() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center,
-    ) {
-        CircularProgressIndicator(color = AppColor.Primary)
     }
 }

@@ -30,6 +30,7 @@ import com.programmergabut.quranyuk.android.Screen
 import com.programmergabut.quranyuk.android.features.alquran.components.CustomSearchView
 import com.programmergabut.quranyuk.android.features.alquran.components.LastRead
 import com.programmergabut.quranyuk.android.features.alquran.components.SurahListItem
+import com.programmergabut.quranyuk.android.features.common.component.Loading
 import com.programmergabut.quranyuk.android.theme.AppColor
 import com.programmergabut.quranyuk.domain.model.Surah
 
@@ -96,17 +97,22 @@ fun QuranScreen(
             }
         )
 
-        LazyColumn(
-            modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp, top = 16.dp)
-        ) {
-            items(allSurah){ surahs ->
-                SurahListItem(
-                    data = surahs,
-                    onItemClick = {
-                        navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}")
-                    }
-                )
+        if(allSurah.isEmpty()) {
+            Loading()
+        } else {
+            LazyColumn(
+                modifier = Modifier.padding(bottom = 16.dp, start = 20.dp, end = 20.dp, top = 16.dp)
+            ) {
+                items(allSurah){ surahs ->
+                    SurahListItem(
+                        data = surahs,
+                        onItemClick = {
+                            navController.navigate(Screen.QuranDetailScreen.route + "/${surahs.number}")
+                        }
+                    )
+                }
             }
         }
+
     }
 }
