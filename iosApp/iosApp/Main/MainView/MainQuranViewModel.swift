@@ -13,12 +13,9 @@ import shared
     private var quranRepository: QuranRepository? = nil
 
     var temptSurahs: [Surah]? = nil
-    var didSearchSurah: (([Surah]?) -> Void)?
-    var didSucceedGetAllSurah: (([Surah]?) -> Void)?
-    var didFailedGetAllSurah: ((String) -> Void)?
-    
-    var didSucceedGetLastRead: ((LastRead?) -> Void)?
-    var didFailedGetLastRead: ((String) -> Void)?
+    var didSearchSurah: ((SurahsState?) -> Void)?
+    var didGetAllSurah: ((SurahsState?) -> Void)?
+    var didGetLastRead: ((LastReadState?) -> Void)?
     
     init(quranRepository: QuranRepository? = nil) {
         self.quranRepository = quranRepository
@@ -29,9 +26,9 @@ import shared
             do {
                 let result = try await quranRepository?.getAllSurah() ?? nil
                 temptSurahs = result
-                didSucceedGetAllSurah?(result)
+                didGetAllSurah?(SurahsState.result(result))
             } catch let ex {
-                didFailedGetAllSurah?(ex.localizedDescription)
+                didGetAllSurah?(SurahsState.error(ex.localizedDescription))
             }
         }
     }
@@ -40,9 +37,9 @@ import shared
         Task {
             do {
                 let result = try await quranRepository?.getLastRead() ?? nil
-                didSucceedGetLastRead?(result)
+                didGetLastRead?(LastReadState.result(result))
             } catch let ex {
-                didFailedGetLastRead?(ex.localizedDescription)
+                didGetLastRead?(LastReadState.error(ex.localizedDescription))
             }
         }
     }
@@ -59,6 +56,18 @@ import shared
                 
             }
         }
-        didSearchSurah?(result)
+        didSearchSurah?(SurahsState.result(result))
     }
+}
+
+enum SurahsState {
+    case loading
+    case result([Surah]?)
+    case error(String)
+}
+
+enum LastReadState {
+    case loading
+    case result(LastRead?)
+    case error(String)
 }

@@ -27,11 +27,9 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
         let remote = RemoteDataSourceImpl(quranApi: QuranApi())
         let local = DatabaseModule().noteDataSource
         let vm = MainQuranViewModel(quranRepository: QuranRepositoryImpl(remote: remote, local: local))
-        vm.didSucceedGetAllSurah = reloadViews
-        vm.didFailedGetAllSurah = showErrorMessage
-        vm.didSucceedGetLastRead = getLastRead
-        vm.didFailedGetLastRead = showEmptyLastRead
-        vm.didSearchSurah = reloadViews
+        vm.didGetAllSurah = didGetAllSurah
+        vm.didGetLastRead = didGetLastRead
+        vm.didSearchSurah = didGetAllSurah
         return vm
     }()
     
@@ -69,19 +67,45 @@ final class MainQuranViewController: UIViewController, UITableViewDataSource, UI
         viewModel.getLastRead()
     }
     
-    private func reloadViews(data: [Surah]?) {
-        showIndicator(isHidden: true)
-        listSurah = data
-        tableView.reloadData()
+    private func didGetAllSurah(state: SurahsState?) {
+        switch state {
+        case .loading:
+            showIndicator(isHidden: true)
+            break
+        case .result(let data):
+            showIndicator(isHidden: false)
+            listSurah = data
+            tableView.reloadData()
+            break
+        case .error(let err):
+            showIndicator(isHidden: false)
+            showErrorMessage(error: err)
+            break
+        case .none:
+            showIndicator(isHidden: false)
+            showErrorMessage(error: "Something went wrong")
+            break
+        }
     }
     
-    private func getLastRead(lastRead: LastRead?) {
-        self.lastRead = lastRead
-        let surahId = String(lastRead?.surahId ?? 0)
-        let ayahId = String(lastRead?.ayahId ?? 0)
-        
-        lastReadView.lastReadSurahNameLabel.text = lastRead?.surahName ?? ""
-        lastReadView.lastReadDetailLabel.text = "\(surahId):\(ayahId)"
+    private func didGetLastRead(state: LastReadState?) {
+        switch state {
+        case .loading:
+            break
+        case .result(let data):
+            self.lastRead = data
+            let surahId = String(lastRead?.surahId ?? 0)
+            let ayahId = String(lastRead?.ayahId ?? 0)
+            lastReadView.lastReadSurahNameLabel.text = lastRead?.surahName ?? ""
+            lastReadView.lastReadDetailLabel.text = "\(surahId):\(ayahId)"
+            break
+        case .error(let err):
+            showEmptyLastRead(errMsg: err)
+            break
+        case .none:
+            showErrorMessage(error: "Something went wrong")
+            break
+        }
     }
     
     private func showEmptyLastRead(errMsg: String) {
