@@ -43,7 +43,7 @@ data class ReadSurah(
             return if ((entity?.size ?: 0) > 0) {
                 entity?.let { ayah ->
                     ReadSurah(
-                        number = ayah[0].number.toInt(),
+                        number = ayah[0].surahId.toInt(),
                         name = ayah[0].name,
                         englishName = ayah[0].englishName,
                         englishNameTranslation = ayah[0].englishNameTranslation,
