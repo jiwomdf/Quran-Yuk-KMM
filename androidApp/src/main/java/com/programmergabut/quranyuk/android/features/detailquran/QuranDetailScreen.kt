@@ -77,6 +77,7 @@ fun QuranDetailScreen(
     var isLastReadSurah by remember { mutableStateOf(surahId == (lastRead?.surahId ?: 0)) }
 
     LaunchedEffect(Unit) {
+        readSurah.value = null
         viewModel.getLastRead()
         viewModel.getAyahBySurahId(surahId)
     }
@@ -180,7 +181,7 @@ fun ListAyah(
     ) {
         coroutineScope.launch {
             val scrollTo = ayahId - 1
-            if (scrollTo >= 0) {
+            if (scrollTo >= 0 && isLastReadSurah) {
                 lazyColumnListState.scrollToItem(scrollTo)
             }
         }
