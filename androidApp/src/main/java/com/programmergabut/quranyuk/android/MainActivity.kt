@@ -12,18 +12,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.programmergabut.quranyuk.QuranDatabase
 import com.programmergabut.quranyuk.android.features.alquran.QuranScreen
 import com.programmergabut.quranyuk.android.features.alquran.QuranViewModel
 import com.programmergabut.quranyuk.android.features.detailquran.QuranDetailScreen
 import com.programmergabut.quranyuk.android.features.detailquran.QuranDetailViewModel
-import com.programmergabut.quranyuk.data.local.DatabaseDriverFactory
-import com.programmergabut.quranyuk.data.local.SqlDelightQuranDataSource
-import com.programmergabut.quranyuk.data.remote.network.QuranApi
-import com.programmergabut.quranyuk.data.remote.source.RemoteDataSourceImpl
-import com.programmergabut.quranyuk.domain.repository.QuranRepositoryImpl
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val quranViewModel by viewModel<QuranViewModel>()
+    private val quranDetailViewModel by viewModel<QuranDetailViewModel>()
 
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,11 +37,6 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         startDestination = Screen.QuranScreen.route
                     ) {
-                        val remote = RemoteDataSourceImpl(QuranApi())
-                        val driver = DatabaseDriverFactory(applicationContext).createDriver()
-                        val local = SqlDelightQuranDataSource(QuranDatabase(driver))
-                        val quranViewModel = QuranViewModel(QuranRepositoryImpl(remote, local))
-                        val quranDetailViewModel = QuranDetailViewModel(QuranRepositoryImpl(remote, local))
                         composable(route = Screen.QuranScreen.route) {
                             QuranScreen(navController, quranViewModel)
                         }
