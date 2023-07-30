@@ -1,1 +1,31 @@
+name: Android Build
 
+on:
+  pull_request:
+    branches:
+      - '**'
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Run Unit Tests Android
+        run: gradle testDebugUnitTest
+
+      - name: Run Unit Tests iOS
+        run: gradle iosX64Test
