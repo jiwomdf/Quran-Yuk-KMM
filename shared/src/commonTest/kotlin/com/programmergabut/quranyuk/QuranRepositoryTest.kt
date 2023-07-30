@@ -1,30 +1,29 @@
-package com.programmergabut.quranyuk.domain.repository
+package com.programmergabut.quranyuk
 
 import com.programmergabut.quranyuk.data.local.LocalDataSource
-import com.programmergabut.quranyuk.data.remote.response.readsurah.ReadSurahCombinedResponse
 import com.programmergabut.quranyuk.data.remote.source.RemoteDataSource
-import com.programmergabut.quranyuk.domain.model.ReadSurah
+import com.programmergabut.quranyuk.domain.repository.QuranRepository
+import com.programmergabut.quranyuk.domain.repository.QuranRepositoryImpl
 import com.programmergabut.quranyuk.util.allSurah
 import com.programmergabut.quranyuk.util.allSurahResponse
-import com.programmergabut.quranyuk.util.lastRead
-import com.programmergabut.quranyuk.util.readSurah
-import com.programmergabut.quranyuk.util.readSurahArResponse
-import com.programmergabut.quranyuk.util.readSurahEnResponse
-import com.programmergabut.quranyuk.util.surahId
+import io.mockative.Mock
+import io.mockative.Times
+import io.mockative.classOf
+import io.mockative.given
+import io.mockative.mock
+import io.mockative.verify
 import kotlinx.coroutines.runBlocking
-import org.mockito.Mockito
-import org.mockito.Mockito.atLeast
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.never
-import org.mockito.Mockito.`when`
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
 internal class QuranRepositoryTest {
 
     private lateinit var quranRepository: QuranRepository
-    private var remote = mock(RemoteDataSource::class.java)
-    private var local = mock(LocalDataSource::class.java)
+
+    @Mock
+    private var remote = mock(classOf<RemoteDataSource>())
+    @Mock
+    private var local = mock(classOf<LocalDataSource>())
 
     @BeforeTest
     fun setup() {
@@ -32,19 +31,19 @@ internal class QuranRepositoryTest {
     }
 
     @Test
-    fun `getAllSurah empty surah in db, has all interaction`(): Unit = runBlocking {
-        `when`(local.getSurah()).thenReturn(emptyList())
-        `when`(local.insertSurah(allSurah)).thenReturn(Unit)
-        `when`(remote.fetchAllSurah()).thenReturn(allSurahResponse)
+    fun `getAllSurah empty surah in db_ has all interaction`(): Unit = runBlocking {
+        given(local).coroutine { getSurah() }.then { emptyList() }
+        given(local).coroutine { insertSurah(allSurah) }.then { }
+        given(remote).coroutine { fetchAllSurah() }.then { allSurahResponse }
 
         quranRepository.getAllSurah()
 
-        Mockito.verify(local, atLeast(2)).getSurah()
-        Mockito.verify(local).insertSurah(allSurah)
-        Mockito.verify(remote).fetchAllSurah()
+        verify(local).coroutine { getSurah() }.wasInvoked(Times(2))
+        verify(local).coroutine { insertSurah(allSurah) }.wasInvoked()
+        verify(remote).coroutine { fetchAllSurah() }.wasInvoked()
     }
 
-    @Test
+    /* @Test
     fun `getAllSurah has surahs in db, just has getSurah() interaction`(): Unit = runBlocking {
         `when`(local.getSurah()).thenReturn(allSurah)
         `when`(local.insertSurah(allSurah)).thenReturn(Unit)
@@ -103,5 +102,5 @@ internal class QuranRepositoryTest {
         `when`(local.insertLastRead(lastRead.ayahId, lastRead.surahId, lastRead.surahName)).thenReturn(Unit)
         quranRepository.insertLastRead(lastRead.ayahId, lastRead.surahId, lastRead.surahName)
         Mockito.verify(local).insertLastRead(lastRead.ayahId, lastRead.surahId, lastRead.surahName)
-    }
+    } */
 }

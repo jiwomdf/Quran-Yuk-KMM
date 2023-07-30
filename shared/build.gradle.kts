@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("com.squareup.sqldelight")
+    id("com.google.devtools.ksp") version "1.8.21-1.0.11"
     kotlin("plugin.serialization") version "1.8.22"
 }
 
@@ -9,7 +10,7 @@ kotlin {
     android {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "17"
             }
         }
     }
@@ -45,6 +46,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation("org.mockito:mockito-core:4.2.0")
+                implementation("io.mockative:mockative:1.4.1")
             }
         }
         val androidMain by getting {
@@ -96,4 +98,16 @@ android {
     defaultConfig {
         minSdk = 21
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    configurations
+        .filter { it.name.startsWith("ksp") && it.name.contains("Test") }
+        .forEach {
+            add(it.name, "io.mockative:mockative-processor:1.4.1")
+        }
 }
