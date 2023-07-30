@@ -36,10 +36,10 @@ Shared KMM Module
 ---
 
 ### Meet The Team 🧑🏼‍🤝‍🧑🏼
-- iOS Dev & Android Dev : [Katili Jiwo AW](https://github.com/jiwomdf)
-- Android Dev 1: [Rifqi Luthfi](https://github.com/rifqi-luthfi)https://github.com/rifqi-luthfi
-- Android Dev 2: [Luthfirrahman Dzulkarnain](https://github.com/cusszbro)
-- Designer: [Fazainsyah Azka Wicaksono](https://www.linkedin.com/in/fazainsyah-azka-wicaksono-414484148)
+iOS Dev & Android Dev: [Katili Jiwo AW](https://github.com/jiwomdf) <br>
+Android Dev: [Rifqi Luthfi](https://github.com/rifqi-luthfi) <br>
+Android Dev: [Luthfirrahman Dzulkarnain](https://github.com/cusszbro) <br>
+Designer: Fazainsyah Azka Wicaksono [Linkedin](https://www.linkedin.com/in/fazainsyah-azka-wicaksono-414484148) & [Web Porto](https://faz-portfolio.webflow.io/)
 
 ---
 This app is still in progress and we will continue develop the new features. in other hand we as developer will continue learning about kmm with this app. 
