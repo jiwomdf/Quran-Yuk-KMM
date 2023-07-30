@@ -61,7 +61,7 @@ val readSurah = ReadSurah(
             numberInSurah = 1,
         ),
         ReadSurah.Ayah (
-            number = 1,
+            number = 2,
             text = "ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَـٰلَمِینَ",
             textEn = "All praise is due to God alone, the Sustainer of all the worlds",
             numberInSurah = 2,
@@ -80,7 +80,7 @@ val readSurahEnResponse = ReadSurahEnResponse(
         ayahs = listOf(
             ReadSurahEnResponse.ReadSurahEn.Ayah(
                 number = 1,
-                text = "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ",
+                text = "In the name of God, The Most Gracious, The Dispenser of Graceِ",
                 numberInSurah = 1,
                 juz = 1,
                 manzil = 1,
@@ -91,7 +91,7 @@ val readSurahEnResponse = ReadSurahEnResponse(
             ),
             ReadSurahEnResponse.ReadSurahEn.Ayah(
                 number = 2,
-                text = "ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَـٰلَمِینَ",
+                text = "All praise is due to God alone, the Sustainer of all the worlds",
                 numberInSurah = 2,
                 juz = 1,
                 manzil = 1,
@@ -115,7 +115,7 @@ val readSurahArResponse = ReadSurahEnResponse(
         ayahs = listOf(
             ReadSurahEnResponse.ReadSurahEn.Ayah(
                 number = 1,
-                text = "In the name of God, The Most Gracious, The Dispenser of Grace",
+                text = "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ",
                 numberInSurah = 1,
                 juz = 1,
                 manzil = 1,
@@ -126,7 +126,7 @@ val readSurahArResponse = ReadSurahEnResponse(
             ),
             ReadSurahEnResponse.ReadSurahEn.Ayah(
                 number = 2,
-                text = "All praise is due to God alone, the Sustainer of all the worlds",
+                text = "ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَـٰلَمِینَ",
                 numberInSurah = 2,
                 juz = 1,
                 manzil = 1,
