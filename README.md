@@ -2,7 +2,7 @@
 
 <b>Quran Yuk</b> is an Al-Qur'an <b>Kotlin Multiplatform App</b>, it has online and offline support with boundresource, use clean code architecture principles, and also unit tested for both Android and iOS  🌙<br><br>
 
-This app consume the https://api.alquran.cloud/ Endpoint
+This app consume the https://api.alquran.cloud/ endpoint
 
 <image src="https://github.com/jiwomdf/Quran-Yuk-KMM/blob/main/brand/quran_yuk_poster.png" width="1000" height="400"> </image>
 <br><br>
