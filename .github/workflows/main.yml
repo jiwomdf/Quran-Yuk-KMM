@@ -27,5 +27,8 @@ jobs:
       - name: Run Unit Tests Android
         run: gradle testDebugUnitTest
 
-      - name: Run Unit Tests iOS
+      - name: Run Unit Tests iOS X64
         run: gradle iosX64Test
+
+      - name: Run Unit Tests iOS Arm64
+        run: gradle iosSimulatorArm64Test
