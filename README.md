@@ -50,7 +50,7 @@ it also open for contribution and discussion 🙏
 # License
 MIT License
 
-Copyright (c) 2020 Katili Jiwo Adi Wiyono
+Copyright (c) 2023 Katili Jiwo Adi Wiyono
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
