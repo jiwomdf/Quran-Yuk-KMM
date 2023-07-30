@@ -1,6 +1,6 @@
 # Quran-Yuk-KMM
 
-<b>Quran Yuk</b> is an Al-Quran <b>Kotlin Multiplatform App</b>, it has online and offline support with boundresource, use clean code architecture principles, and also unit tested 🌙<br><br>
+<b>Quran Yuk</b> is an Al-Qur'an <b>Kotlin Multiplatform App</b>, it has online and offline support with boundresource, use clean code architecture principles, and also unit tested 🌙<br><br>
 
 This app consume the https://api.alquran.cloud/ Endpoint
 
