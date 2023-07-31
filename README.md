@@ -1,10 +1,10 @@
 # Quran-Yuk-KMM
 
-<b>Quran Yuk</b> is an Al-Qur'an <b>Kotlin Multiplatform App</b>, it has online and offline support with boundresource, use clean code architecture principles, and also unit tested for both Android and iOS  🌙<br><br>
+<b>Quran Yuk</b> is an Al-Qur'an <b>Kotlin Multiplatform Mobile App</b>, it has online and offline support with boundresource, use clean code architecture principles, and also unit tested for both Android and iOS  🌙<br><br>
 
 This app consume the https://api.alquran.cloud/ endpoint
 
-<image src="https://github.com/jiwomdf/Quran-Yuk-KMM/blob/main/brand/quran_yuk_poster.png" width="1000" height="400"> </image>
+<image src="https://github.com/jiwomdf/Quran-Yuk-KMM/blob/main/brand/quran_yuk_poster.png" width="1000" height="350"> </image>
 <br><br>
 
 ### Android App
@@ -36,10 +36,10 @@ Shared KMM Module
 ---
 
 ### Meet The Team 🧑🏼‍🤝‍🧑🏼
-- iOS Dev & Android Dev : [Katili Jiwo AW](https://github.com/jiwomdf)
-- Android Dev 1: [Rifqi Luthfi](https://github.com/rifqi-luthfi)https://github.com/rifqi-luthfi
-- Android Dev 2: [Luthfirrahman Dzulkarnain](https://github.com/cusszbro)
-- Designer: [Fazainsyah Azka Wicaksono](https://www.linkedin.com/in/fazainsyah-azka-wicaksono-414484148)
+- iOS Dev & Android Dev: [Katili Jiwo AW](https://github.com/jiwomdf) <br>
+- Android Dev: [Rifqi Luthfi](https://github.com/rifqi-luthfi) <br>
+- Android Dev: [Luthfirrahman Dzulkarnain](https://github.com/cusszbro) <br>
+- Designer: Fazainsyah Azka Wicaksono [Linkedin](https://www.linkedin.com/in/fazainsyah-azka-wicaksono-414484148) & [Web Porto](https://faz-portfolio.webflow.io/)
 
 ---
 This app is still in progress and we will continue develop the new features. in other hand we as developer will continue learning about kmm with this app. 
