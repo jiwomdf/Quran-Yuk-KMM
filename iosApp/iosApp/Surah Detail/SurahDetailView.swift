@@ -23,6 +23,11 @@ struct SurahDetailView: View {
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
+        ComposeView()
+    }
+    
+    //TODO: JIWO
+    /* var body: some View {
         NavigationView {
             ZStack {
                 VStack {
@@ -65,7 +70,7 @@ struct SurahDetailView: View {
             }
         }
         .environment(\.colorScheme, .dark)
-    }
+    } */
 }
 
 struct TopNavigationBar: View {

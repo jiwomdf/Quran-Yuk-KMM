@@ -16,6 +16,7 @@ import com.programmergabut.quranyuk.android.features.alquran.QuranScreen
 import com.programmergabut.quranyuk.android.features.alquran.QuranViewModel
 import com.programmergabut.quranyuk.android.features.detailquran.QuranDetailScreen
 import com.programmergabut.quranyuk.android.features.detailquran.QuranDetailViewModel
+import com.programmergabut.quranyuk.compose.presentation.OnBoardingScreen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
@@ -38,7 +39,8 @@ class MainActivity : ComponentActivity() {
                         startDestination = Screen.QuranScreen.route
                     ) {
                         composable(route = Screen.QuranScreen.route) {
-                            QuranScreen(navController, quranViewModel)
+                            //TODO JIWO QuranScreen(navController, quranViewModel)
+                            OnBoardingScreen()
                         }
                         with(QuranDetailScreen){
                             composable(

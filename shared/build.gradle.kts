@@ -4,6 +4,7 @@ plugins {
     id("com.squareup.sqldelight")
     id("com.google.devtools.ksp") version "1.8.21-1.0.11"
     kotlin("plugin.serialization") version "1.8.22"
+    id("org.jetbrains.compose") version "1.4.3"
 }
 
 kotlin {
@@ -22,6 +23,7 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
+            isStatic = true
         }
     }
 
@@ -32,6 +34,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                implementation(compose.components.resources)
+
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 
@@ -56,6 +64,7 @@ kotlin {
                 implementation ("io.insert-koin:koin-androidx-compose:3.4.1")
                 implementation ("io.insert-koin:koin-android:$koin_version")
                 implementation ("io.insert-koin:koin-core:$koin_version")
+                implementation("androidx.activity:activity-compose:1.7.2")
             }
         }
         val androidUnitTest by getting
