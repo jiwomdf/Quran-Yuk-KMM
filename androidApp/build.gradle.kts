@@ -48,6 +48,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation("androidx.navigation:navigation-compose:2.7.0-beta02")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+    implementation("com.google.android.play:integrity:1.2.0")
 
     val koinVersion = "3.3.2"
     implementation("io.insert-koin:koin-androidx-compose:3.4.1")

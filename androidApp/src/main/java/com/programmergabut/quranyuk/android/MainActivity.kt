@@ -1,6 +1,7 @@
 package com.programmergabut.quranyuk.android
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -12,11 +13,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.google.android.gms.tasks.Task
+import com.google.android.play.core.integrity.IntegrityManagerFactory
+import com.google.android.play.core.integrity.StandardIntegrityManager
+import com.google.android.play.core.integrity.StandardIntegrityManager.StandardIntegrityToken
+import com.google.android.play.core.integrity.StandardIntegrityManager.StandardIntegrityTokenRequest
 import com.programmergabut.quranyuk.android.features.alquran.QuranScreen
 import com.programmergabut.quranyuk.android.features.alquran.QuranViewModel
 import com.programmergabut.quranyuk.android.features.detailquran.QuranDetailScreen
 import com.programmergabut.quranyuk.android.features.detailquran.QuranDetailViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainActivity : ComponentActivity() {
 
@@ -58,6 +65,46 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun callIntegrityApi() {
+        // Create an instance of a manager.
+        val standardIntegrityManager: StandardIntegrityManager =
+        IntegrityManagerFactory.createStandard(applicationContext)
+
+        var integrityTokenProvider: StandardIntegrityManager.StandardIntegrityTokenProvider
+        val cloudProjectNumber: Long = 100
+
+        // Prepare integrity token. Can be called once in a while to keep internal
+        // state fresh.
+        standardIntegrityManager.prepareIntegrityToken(
+            StandardIntegrityManager.PrepareIntegrityTokenRequest.builder()
+                .setCloudProjectNumber(cloudProjectNumber)
+                .build())
+            .addOnSuccessListener { tokenProvider ->
+            integrityTokenProvider = tokenProvider
+            callIntegrityServer(integrityTokenProvider)
+        }
+        .addOnFailureListener { exception ->
+            Toast.makeText(this@MainActivity, exception.message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun callIntegrityServer(integrityTokenProvider: StandardIntegrityManager.StandardIntegrityTokenProvider) {
+
+        val requestHash = "2cp24z..." //TODO create the hash
+        val integrityTokenResponse: Task<StandardIntegrityToken> = integrityTokenProvider.request(
+            StandardIntegrityTokenRequest.builder()
+                .setRequestHash(requestHash)
+                .build()
+        )
+        integrityTokenResponse
+            .addOnSuccessListener { response: StandardIntegrityToken ->
+                //TODO send to server, sendToServer(response.token())
+            }
+            .addOnFailureListener { exception: Exception? ->
+                Toast.makeText(this@MainActivity, exception!!.message, Toast.LENGTH_SHORT).show()
+            }
     }
 }
 
