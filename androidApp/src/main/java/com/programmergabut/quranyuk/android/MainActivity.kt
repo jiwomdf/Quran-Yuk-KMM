@@ -1,6 +1,7 @@
 package com.programmergabut.quranyuk.android
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -65,6 +66,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        callIntegrityApi()
     }
 
     private fun callIntegrityApi() {
@@ -78,15 +81,22 @@ class MainActivity : ComponentActivity() {
         // Prepare integrity token. Can be called once in a while to keep internal
         // state fresh.
         standardIntegrityManager.prepareIntegrityToken(
-            StandardIntegrityManager.PrepareIntegrityTokenRequest.builder()
+            StandardIntegrityManager.PrepareIntegrityTokenRequest
+                .builder()
                 .setCloudProjectNumber(cloudProjectNumber)
-                .build())
-            .addOnSuccessListener { tokenProvider ->
+                .build()
+        ).addOnSuccessListener { tokenProvider ->
             integrityTokenProvider = tokenProvider
             callIntegrityServer(integrityTokenProvider)
+
+            //TODO JIWO
+            Log.e("jiwo", "callIntegrityApi addOnSuccessListener: $integrityTokenProvider")
         }
         .addOnFailureListener { exception ->
             Toast.makeText(this@MainActivity, exception.message, Toast.LENGTH_SHORT).show()
+
+            //TODO JIWO
+            Log.e("jiwo", "callIntegrityApi addOnFailureListener: ${exception.message ?: ""}")
         }
     }
 
@@ -101,9 +111,14 @@ class MainActivity : ComponentActivity() {
         integrityTokenResponse
             .addOnSuccessListener { response: StandardIntegrityToken ->
                 //TODO send to server, sendToServer(response.token())
+
+                //TODO JIWO
+                Log.e("jiwo", "callIntegrityServer addOnSuccessListener: $response")
             }
             .addOnFailureListener { exception: Exception? ->
                 Toast.makeText(this@MainActivity, exception!!.message, Toast.LENGTH_SHORT).show()
+                //TODO JIWO
+                Log.e("jiwo", "callIntegrityServer addOnFailureListener: ${exception.message ?: ""}")
             }
     }
 }
